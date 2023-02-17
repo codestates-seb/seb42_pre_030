@@ -1,0 +1,19 @@
+:root {
+    /* color */
+    --gray-100: #F1F2F3;
+    --gray-200: #BABFC4;
+    --gray-300: #9BA2A9;
+    --gray-400: #232629;
+
+    --bluish-gray-400: #E1ECF4;
+    --bluish-gray-400: #A9C6D9;
+
+    --viva-blue-100: #64BAFD;
+    --viva-blue-100: #4392F8;
+    --viva-blue-100: #0B95FF;
+
+    --viva-orange-100: #FDF7E2;
+    --viva-orange-200: #F48225;
+  /* boxShadow */
+  /* --15px: 0px 0px 15px 0px #00000026; */
+}
