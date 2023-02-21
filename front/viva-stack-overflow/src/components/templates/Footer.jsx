@@ -56,7 +56,7 @@ const Footer = () => {
     `
 
     const FooterA = styled.a`
-        color: aliceblue;
+        color: var( --bluish-gray-400);
         text-decoration-line: none;
         font-weight: 200;
         font-size: 0.9rem;
@@ -64,11 +64,11 @@ const Footer = () => {
     `
 
     const Copyright = styled.p`
-    display: flex;
-    font-size: 0.7rem;
-    color: aliceblue;
-    margin-top: 35%;
-    padding-right: 10%;
+        display: flex;
+        font-size: 0.7rem;
+        color: var( --bluish-gray-400);
+        margin-top: 35%;
+        padding-right: 10%;
     `
 
     return (

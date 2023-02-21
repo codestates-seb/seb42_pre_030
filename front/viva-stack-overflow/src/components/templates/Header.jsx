@@ -9,7 +9,7 @@ const Header = () => {
         display: flex;
         justify-content: center;
         background-color: #f8f9f9;
-        border-top: 3px solid #f48225;
+        border-top: 3px solid var(--viva-orange-200);
         height: 50px;
         width: 100%;
         box-shadow: 0 1px 2px hsla(0,0%,0%,0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05), 0 2px 8px hsla(0, 0%, 0%, 0.05);
@@ -56,19 +56,19 @@ const Header = () => {
     `
 
     const LoginButton = styled.button`
-        border: 1px solid #0074cc;
+        border: 1px solid var(--viva-blue-400);
         border-radius: 4px;
-        color: #0074cc;
-        background-color: #e1ecf4;
+        color: var(--viva-blue-400);
+        background-color: aliceblue;
         height: 25px;
         cursor: pointer;
     `
 
     const SignupButton = styled.button`
-        border: 1px solid #0074cc;
+        border: 1px solid var(--viva-blue-400);
         border-radius: 4px;
-        color: #e1ecf4;
-        background-color: #0074cc;
+        color: aliceblue;
+        background-color: var(--viva-blue-400);
         height: 25px;
         cursor: pointer;
     `
@@ -76,7 +76,7 @@ const Header = () => {
     const OpenMypage = styled.img`
         height: 25px;
         cursor: pointer;
-        border: 1px solid #0074cc;
+        border: 1px solid var(--viva-blue-400);
         border-radius: 4px;
     `
 

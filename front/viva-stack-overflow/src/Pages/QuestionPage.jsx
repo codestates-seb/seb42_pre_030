@@ -1,22 +1,20 @@
 import LoginForm from "../components/modules/LoginForm";
 import Footer from "../components/templates/Footer";
 import Header from "../components/templates/Header";
+import Main from "../components/templates/Main";
 import Sidebar from "../components/templates/Sidebar";
 
 
-
-
-function LoginPage() {
+const QuestionPage = function () {
 
     return (
         <>
-            <Sidebar />
             <Header />
-            <LoginForm />
+            <Sidebar />
+            <Main />
             <Footer />
         </>
-
     )
 }
 
-export default LoginPage;
+export default QuestionPage;
