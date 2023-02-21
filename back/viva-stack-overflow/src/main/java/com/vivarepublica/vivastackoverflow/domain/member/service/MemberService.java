@@ -21,6 +21,7 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+    @Transactional(readOnly = true)
     public Member findMember(Long memberId) {
         return findVerifiedMember(memberId);
     }
