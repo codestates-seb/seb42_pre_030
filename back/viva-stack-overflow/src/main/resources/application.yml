@@ -12,3 +12,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+logging:
+  level:
+    org:
+      springframework:
+        orm:
+          jpa: DEBUG
