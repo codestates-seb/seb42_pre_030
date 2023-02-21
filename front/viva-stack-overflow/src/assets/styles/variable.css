@@ -3,14 +3,18 @@
     --gray-100: #F1F2F3;
     --gray-200: #BABFC4;
     --gray-300: #9BA2A9;
-    --gray-400: #232629;
+    --gray-400: #2F3337;
+    --gray-500: #232629;
+    --gray-600: #0C0D0E;
 
     --bluish-gray-400: #E1ECF4;
     --bluish-gray-400: #A9C6D9;
 
     --viva-blue-100: #64BAFD;
-    --viva-blue-100: #4392F8;
-    --viva-blue-100: #0B95FF;
+    --viva-blue-200: #4392F8;
+    --viva-blue-300: #0A95FF;
+    --viva-blue-400: #0074CC;
+    --viva-blue-500: #385499;
 
     --viva-orange-100: #FDF7E2;
     --viva-orange-200: #F48225;
