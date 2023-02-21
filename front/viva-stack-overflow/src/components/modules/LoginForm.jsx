@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import styled, { createGlobalStyle } from "styled-components";
 import React, { useEffect, useState } from "react";
 import "../../assets/styles/variable.css";

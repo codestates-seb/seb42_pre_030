@@ -1,14 +1,15 @@
+/* eslint-disable */
+
 import './App.css';
-import LoginForm from "./components/modules/LoginForm";
-import SignupForm from "./components/modules/SignupForm";
 import React from 'react';
 import styled from 'styled-components';
+import LoginPage from './Pages/LoginPage';
 
 
 function App() {
   return (
     <>
-        <SignupForm/>
+      <LoginPage />
     </>
   );
 }
