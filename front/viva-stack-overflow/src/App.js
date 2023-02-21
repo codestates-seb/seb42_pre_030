@@ -10,7 +10,7 @@ import QuestionPage from './Pages/QuestionPage';
 function App() {
   return (
     <>
-      <QuestionPage />
+      <LoginPage />
     </>
   );
 }
