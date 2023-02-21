@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Answer /*extends Auditable*/ {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
-    private Long answerId;
+    private long answerId;
 
 //    @ManyToOne
 //    @JoinColumn(name = "QUESTION_ID")  // Question Table 참조
