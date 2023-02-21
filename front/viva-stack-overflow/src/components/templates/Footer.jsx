@@ -15,7 +15,6 @@ const Footer = () => {
         padding-right: 1%;
         font-size: 1rem;
         justify-content: center;
-        bottom: 0;
     `
 
     const LogoStackoverflow = styled.img`
