@@ -1,26 +1,30 @@
 import styled, { createGlobalStyle } from "styled-components";
 import React, { useEffect, useState } from "react";
-import "../../assets/styles/variable.css";
-import homeButton from '../../assets/imgs/--logo--home.png';
+import "../../../assets/styles/variable.css";
+import homeButton from '../../../assets/imgs/--logo--home.png';
 
 const Header = () => {
 
     const Headers = styled.div`
-        display: flex;
-        justify-content: center;
-        background-color: #f8f9f9;
-        border-top: 3px solid var(--viva-orange-200);
-        height: 50px;
-        width: 100%;
-        box-shadow: 0 1px 2px hsla(0,0%,0%,0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05), 0 2px 8px hsla(0, 0%, 0%, 0.05);
-        position: fixed;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: rgb(248, 249, 249);
+    border-top: 3px solid rgb(244, 130, 36);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    height: 50px;
+    left: 0;
+    position: sticky;
+    width: 100vw;
+    z-index: 999;
+    justify-content: space-around;
     `
 
     const TopbarContainer = styled.nav`
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
     `
 
     const TopbarBox1 = styled.div`
@@ -55,14 +59,31 @@ const Header = () => {
         text-decoration-line: none;
     `
 
-    const LoginButton = styled.button`
-        border: 1px solid var(--viva-blue-400);
-        border-radius: 4px;
-        color: var(--viva-blue-400);
-        background-color: aliceblue;
-        height: 25px;
-        cursor: pointer;
-    `
+    const LoginOutButton = styled.button`
+        all: unset;
+        background-color: rgb(225, 236, 244);
+        box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.3);
+        border: 1px solid rgb(57, 115, 157);
+        border-radius: 3px;
+        color: rgb(57, 115, 157);
+        font-size: 14px;
+        font-weight: 400;
+        height: 32px;
+        text-align: center;
+        width: 60px;
+        &:hover {
+            background-color: rgb(185, 210, 232);
+        }
+        `
+
+    const SignUpButton = styled(LoginOutButton)`
+        background-color: rgb(10, 149, 255);
+        color: rgb(255, 255, 255);
+        width: 65px;
+        &:hover {
+            background-color: rgb(49, 114, 198);
+        }
+        `;
 
     const SignupButton = styled.button`
         border: 1px solid var(--viva-blue-400);
@@ -93,8 +114,8 @@ const Header = () => {
                         <SearchBox placeholder='Search' maxLength={'240'}></SearchBox>
                     </TopbarBox2>
                     <TopbarBox3>
-                        <TopbarButtonContainer href='/login' ><LoginButton>Log in</LoginButton></TopbarButtonContainer>
-                        <TopbarButtonContainer href='/signup' ><SignupButton>Sign up</SignupButton></TopbarButtonContainer>
+                        <TopbarButtonContainer href='/login' ><LoginOutButton>Log in</LoginOutButton></TopbarButtonContainer>
+                        <TopbarButtonContainer href='/signup' ><SignUpButton>Sign up</SignUpButton></TopbarButtonContainer>
                         {/*<TopbarButtonContainer href='/mypage' ><img className='topbar--item mypage' src='anything.ng'></img></TopbarButtonContainer>*/}
                     </TopbarBox3>
                 </TopbarContainer>
