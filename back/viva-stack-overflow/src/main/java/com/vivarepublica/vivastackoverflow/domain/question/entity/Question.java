@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Blob;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,7 +14,6 @@ import javax.persistence.*;
 public class Question extends Auditable {
 
        @Id
-       @Column(name = "QUESTION_ID")
        @GeneratedValue(strategy = GenerationType.IDENTITY)
        private Long questionId;
 
@@ -22,10 +23,18 @@ public class Question extends Auditable {
        @Column(length = 9999, nullable = false)
        private String content;
 
-       @Column
+       @Column(nullable = false)
        private int views;
 
        @Column
-       private String tag;
+       private Blob files;
+
+       //db join
+       //@OneToMany(mappedBy = "question")
+       //private List<String> tag = new ArrayList<>();
+
+       //db join
+       //@OneToMany(mappedBy = "question")
+       //private int like;
 
 }

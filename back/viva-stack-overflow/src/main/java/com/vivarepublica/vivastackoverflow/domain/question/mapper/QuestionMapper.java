@@ -1,8 +1,6 @@
 package com.vivarepublica.vivastackoverflow.domain.question.mapper;
 
-import com.vivarepublica.vivastackoverflow.domain.question.dto.QuestionPatchDto;
-import com.vivarepublica.vivastackoverflow.domain.question.dto.QuestionPostDto;
-import com.vivarepublica.vivastackoverflow.domain.question.dto.QuestionResponseDto;
+import com.vivarepublica.vivastackoverflow.domain.question.dto.QuestionDto;
 import com.vivarepublica.vivastackoverflow.domain.question.entity.Question;
 import org.mapstruct.Mapper;
 
@@ -12,19 +10,17 @@ import java.util.List;
 public interface QuestionMapper {
 
     //PostDto -> Question
-    Question questionPostDtoToQuestion(QuestionPostDto questionPostDto);
+    Question questionPostDtoToQuestion(QuestionDto.PostDto questionPostDto);
 
     //PatchDto -> Question
-    Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto);
+    Question questionPatchDtoToQuestion(QuestionDto.PatchDto questionPatchDto);
 
     //ResponseDto -> Question
-    Question questionResponseDtoToQuestion(QuestionResponseDto questionResponseDto);
+    Question questionResponseDtoToQuestion(QuestionDto.ResponseDto questionResponseDto);
 
     //Question -> ResponseDto
-    QuestionResponseDto questionToQuestionResponseDto(Question question);
+    QuestionDto.ResponseDto questionToQuestionResponseDto(Question question);
 
     //List
-    List<QuestionResponseDto> questionToQuestionResponseDtos(List<Question> questions);
-
-
+    List<QuestionDto.ResponseDto> questionToQuestionResponseDtos(List<Question> questions);
 }
