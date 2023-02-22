@@ -39,22 +39,22 @@ public class QuestionController {
     }
 
     //Patch
-    @PatchMapping("/patch")
-    public ResponseEntity PatchQuestion() {
+    @PatchMapping("/{question-id}")
+    public ResponseEntity PatchQuestion(@PathVariable("question-id") @Positive Long questionId) {
 //        @PathVariable("question-id") @Positive Long questionId,
 //        @RequestBody QuestionDto.PatchDto patchDto
-        QuestionDto.ResponseDto patch = new QuestionDto.ResponseDto(1L, "제목", "내용", List.of(new String[]{"태그1", "태그2"}), 3);
+        QuestionDto.ResponseDto patch = new QuestionDto.ResponseDto(questionId, "제목22", "내용22", List.of(new String[]{"태그1", "태그2"}), 3);
 
         return ResponseEntity.ok(patch);
     }
 
     //Get One
-    @GetMapping("/getOne")
-    public ResponseEntity getQuestion() {
+    @GetMapping("/{question-id}")
+    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive Long questionId) {
 
         //@PathVariable("question-id") @Positive Long questionId
         //Question getOne = questionService.getOne(questionId);
-        QuestionDto.ResponseDto getOne = new QuestionDto.ResponseDto(1L, "제목", "내용", List.of(new String[]{"태그1", "태그2"}), 3);
+        QuestionDto.ResponseDto getOne = new QuestionDto.ResponseDto(questionId, "제목", "내용", List.of(new String[]{"태그1", "태그2"}), 3);
         return ResponseEntity.ok(getOne);
 
     }
@@ -72,8 +72,8 @@ public class QuestionController {
 
 
     //Delete One
-    @DeleteMapping("/delete")
-    public ResponseEntity deleteOne(){
+    @DeleteMapping("/{question-id}")
+    public ResponseEntity deleteOne(@PathVariable("question-id") @Positive Long questionId){
 
         //@PathVariable("question-id") @Positive Long questionId
         return new ResponseEntity(HttpStatus.NO_CONTENT);

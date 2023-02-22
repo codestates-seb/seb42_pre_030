@@ -2,15 +2,18 @@ package com.vivarepublica.vivastackoverflow.domain.question.entity;
 
 import com.vivarepublica.vivastackoverflow.audit.Auditable;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Question extends Auditable {
 
        @Id
@@ -31,7 +34,7 @@ public class Question extends Auditable {
 
        //db join
        //@OneToMany(mappedBy = "question")
-       //private List<String> tag = new ArrayList<>();
+       //private List<String> tag;
 
        //db join
        //@OneToMany(mappedBy = "question")

@@ -11,27 +11,31 @@ public class QuestionDto {
 
     @Getter
     @Setter
+    @AllArgsConstructor
     public static class PostDto {
 
         private String title;
 
         private String content;
 
-        //private List<String> tag;
+        private List<String> tag;
 
-        private Blob files;
+        //private Blob files;
 
     }
 
     @Getter
     @Setter
+    @AllArgsConstructor
     public static class PatchDto {
+
+        private Long questionId;
 
         private String title;
 
         private String content;
 
-        private Blob files;
+        //private Blob files;
 
         private List<String> tag;
 
