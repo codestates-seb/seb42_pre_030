@@ -2,12 +2,15 @@ package com.vivarepublica.vivastackoverflow.domain.answer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 public class AnswerDto {
+
     @AllArgsConstructor
     @Getter
     public static class Post {
-        public Post(){} // 기본 생성자를 안넣으면 매핑이 안됨 왜 그럴까??
+        private Long questionId;
+        private Long memberId;
         private String content;
 
         // TODO: 첨부파일
@@ -16,7 +19,7 @@ public class AnswerDto {
     @AllArgsConstructor
     @Getter
     public static class Response {
-        private long answerId;
+        private Long answerId;
         private String content;
     }
 }

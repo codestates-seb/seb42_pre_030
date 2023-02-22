@@ -1,29 +1,30 @@
 package com.vivarepublica.vivastackoverflow.domain.answer.entity;
 
+import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.domain.Auditable;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 public class Answer /*extends Auditable*/ {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
-    private long answerId;
+    private Long answerId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "QUESTION_ID")  // Question Table 참조
-    // TODO: private Type questionId;
+    @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")  // Question Table 참조
+    private Question question;
 
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_ID")  // Member Table 참조
-    // TODO: private Type memberId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")  // Member Table 참조
+    private Member member;
 
-    @Column(nullable = false) // Content length = ? | columnDefinition = "TEXT" <- DataBase 타입 설정
+    @Column(nullable = false, length = 9999) // Content length = ? | columnDefinition = "TEXT" <- DataBase 타입 결정
     private String content;
 
     /* Auditable 처리
