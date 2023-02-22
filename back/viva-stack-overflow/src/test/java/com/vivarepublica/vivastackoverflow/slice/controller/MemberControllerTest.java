@@ -3,7 +3,11 @@ package com.vivarepublica.vivastackoverflow.slice.controller;
 import com.google.gson.Gson;
 import com.vivarepublica.vivastackoverflow.domain.member.controller.MemberController;
 import com.vivarepublica.vivastackoverflow.domain.member.dto.MemberDto;
+import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
+import com.vivarepublica.vivastackoverflow.domain.member.mapper.MemberMapper;
+import com.vivarepublica.vivastackoverflow.domain.member.service.MemberService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,6 +24,8 @@ import java.util.List;
 import static com.vivarepublica.vivastackoverflow.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.vivarepublica.vivastackoverflow.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -37,6 +43,10 @@ public class MemberControllerTest {
     private MockMvc mockMvc;
     @Autowired
     private Gson gson;
+    @MockBean
+    private MemberService memberService;
+    @MockBean
+    private MemberMapper mapper;
 
     @Test
     void postMemberTest() throws Exception {
@@ -45,6 +55,15 @@ public class MemberControllerTest {
                 new MemberDto.Post("walter@gmail.com", "a1234567", "Heisenberg");
 
         String postContent = gson.toJson(postMemberDto);
+
+        given(mapper.memberPostDtoToMember(Mockito.any(MemberDto.Post.class)))
+                .willReturn(new Member());
+
+        Member createdMember = new Member();
+        createdMember.setMemberId(1L);
+
+        given(memberService.createMember(Mockito.any(Member.class)))
+                .willReturn(createdMember);
 
         // when
         ResultActions actions =
@@ -80,8 +99,14 @@ public class MemberControllerTest {
     void getMemberTest() throws Exception {
         // given
         Long memberId = 1L;
-        MemberDto.Response response =
+        MemberDto.Response responseBody =
                 new MemberDto.Response(memberId, "frank@gmail.com", "francis");
+
+        given(memberService.findMember(Mockito.anyLong()))
+                .willReturn(new Member());
+
+        given(mapper.memberToMemberResponseDto(Mockito.any(Member.class)))
+                .willReturn(responseBody);
 
         // when
         ResultActions actions =
@@ -93,7 +118,7 @@ public class MemberControllerTest {
         // then
         actions
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.memberId").value(response.getMemberId()))
+                .andExpect(jsonPath("$.memberId").value(responseBody.getMemberId()))
                 .andDo(document(
                         "get-member",
                         getRequestPreProcessor(),
@@ -115,6 +140,8 @@ public class MemberControllerTest {
     void deleteMemberTest() throws Exception {
         // given
         Long memberId = 1L;
+
+        doNothing().when(memberService).deleteMember(Mockito.anyLong());
 
         // when
         ResultActions actions =
