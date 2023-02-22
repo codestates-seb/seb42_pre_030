@@ -1,8 +1,11 @@
 package com.vivarepublica.vivastackoverflow.auth.util;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class CustomAuthorityUtils {
@@ -10,5 +13,14 @@ public class CustomAuthorityUtils {
 
     public List<String> createRoles() {
         return USER_ROLES_STRING;
+    }
+
+    public List<GrantedAuthority> createAuthorities(List<String> roles) {
+        List<GrantedAuthority> authorities =
+                roles.stream()
+                        .map(role -> new SimpleGrantedAuthority(String.format("ROLE_%s", role)))
+                        .collect(Collectors.toList());
+
+        return authorities;
     }
 }
