@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -287,11 +284,11 @@ public class QuestionControllerTest {
 //                        .content(responseContent3)
 //        );
 
-        List<QuestionDto.ResponseDto> responseList
-                = List.of(new QuestionDto.ResponseDto(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1),
-                new QuestionDto.ResponseDto(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
-                new QuestionDto.ResponseDto(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3)
-                );
+//        List<QuestionDto.ResponseDto> responseList
+//                = List.of(new QuestionDto.ResponseDto(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1),
+//                new QuestionDto.ResponseDto(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
+//                new QuestionDto.ResponseDto(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3)
+//                );
 
         String page = "1";
         String size = "10";
@@ -299,7 +296,7 @@ public class QuestionControllerTest {
         queryParams.add("page", page);
         queryParams.add("size", size);
 
-        Page<QuestionDto.ResponseDto> pageQuestions = new PageImpl<>(responseList, PageRequest.of(1,10),3);
+//        Page<QuestionDto.ResponseDto> pageQuestions = new PageImpl<>(responseList, PageRequest.of(1,10),3);
 
 
         //when
