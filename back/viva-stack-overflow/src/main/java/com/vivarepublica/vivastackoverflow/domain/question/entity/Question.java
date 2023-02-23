@@ -7,8 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -38,6 +36,6 @@ public class Question extends Auditable {
 
        //db join
        //@OneToMany(mappedBy = "question")
-       //private int like;
+       private int like;
 
 }
