@@ -1,7 +1,6 @@
-import styled, { createGlobalStyle } from "styled-components";
-import React, { useEffect, useState } from "react";
-import "../../../assets/styles/variable.css";
-import homeButton from '../../../assets/imgs/--logo--home.png';
+import styled from "styled-components";
+import "../../Assets/STYLES/GlobalStyle";
+import homeButton from '../../Assets/IMG/--logo--viva--black.png';
 
 const Header = () => {
 
@@ -9,10 +8,10 @@ const Header = () => {
     align-items: center;
     box-sizing: border-box;
     background-color: rgb(248, 249, 249);
-    border-top: 3px solid rgb(244, 130, 36);
+    border-top: 3px solid var(--viva-blue-600);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
     display: flex;
-    height: 50px;
+    height: 60px;
     left: 0;
     position: sticky;
     width: 100vw;
@@ -33,6 +32,8 @@ const Header = () => {
     `
 
     const HomeLogo = styled.img`
+            display: flex;
+            align-items: center;
             padding: 10px;
             width: 150px;
     `
@@ -85,21 +86,6 @@ const Header = () => {
         }
         `;
 
-    const SignupButton = styled.button`
-        border: 1px solid var(--viva-blue-400);
-        border-radius: 4px;
-        color: aliceblue;
-        background-color: var(--viva-blue-400);
-        height: 25px;
-        cursor: pointer;
-    `
-
-    const OpenMypage = styled.img`
-        height: 25px;
-        cursor: pointer;
-        border: 1px solid var(--viva-blue-400);
-        border-radius: 4px;
-    `
 
     return (
         <>

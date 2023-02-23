@@ -2,11 +2,11 @@
 
 import styled, { createGlobalStyle } from "styled-components";
 import React, { useEffect, useState } from "react";
-import "../../assets/styles/variable.css";
-import icon_fb from "../../assets/imgs/--icon--facebook.png";
-import icon_google from "../../assets/imgs/--icon--google.png";
-import icon_github from "../../assets/imgs/--icon--github.png";
-import logo_stackoverflow from "../../assets/imgs/--logo--stackoverflow.png";
+import "../../Assets/STYLES/variable.css";
+import icon_fb from "../../Assets/IMG/--icon--facebook.png";
+import icon_google from "../../Assets/IMG/--icon--google.png";
+import icon_github from "../../Assets/IMG/--icon--github.png";
+import logo_stackoverflow from "../../Assets/IMG/--logo--stackoverflow.png";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -163,4 +163,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default LoginForm;

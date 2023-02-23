@@ -1,6 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components";
-import { Link } from "react-router-dom";
-import logo_stackoverflow from '../../assets/imgs/--logo--stackoverflow.png'
+import styled from "styled-components";
+import logo_stackoverflow from '../../Assets/IMG/--logo--toss.png'
 
 const FooterComponent2 = styled.footer`
   width: 100vw;
@@ -20,9 +19,8 @@ const FooterComponent2 = styled.footer`
 
     .icon {
       flex: 0 0 64px;
-      margin: -12px 0 32px;
-      width: 37px;
-      height: 40px;
+      margin: 0 30px ;
+      width: 40px;
     }
 
     .menuContainer {
@@ -30,7 +28,7 @@ const FooterComponent2 = styled.footer`
       flex: 2 1 auto;
       > ul {
         flex: 1 0 auto;
-        padding: 0 12px 24px 0;
+        padding: 0 0 30px;
         > h5 {
           margin: 0 0 4px;
           > a {
@@ -75,7 +73,7 @@ const FooterComponent2 = styled.footer`
   }
 `;
 
-const Footer2 = () => {
+const Footer = () => {
   return (
     <>
       <FooterComponent2>
@@ -146,4 +144,4 @@ const Footer2 = () => {
   );
 };
 
-export default Footer2;
+export default Footer;
