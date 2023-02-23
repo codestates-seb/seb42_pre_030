@@ -806,29 +806,183 @@ Content-Length: 118
 </div>
 <div class="sect2">
 <h3 id="_전체_질문_조회">1.4. 전체 질문 조회</h3>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">curl-request</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/getAll-question/curl-request.adoc[]</p>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/questions?page=1&amp;size=10' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">http-request</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/getAll-question/http-request.adoc[]</p>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /questions?page=1&amp;size=10 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
 </div>
-<div class="paragraph">
-<div class="title">request-parameters</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/getAll-question/request-parameters.adoc[]</p>
 </div>
-<div class="paragraph">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사이즈</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
 <div class="title">http-response</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/getAll-question/http-response.adoc[]</p>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 527
+
+{
+  "data" : [ {
+    "questionId" : 1,
+    "title" : "제목1",
+    "content" : "내용1",
+    "tag" : [ "태그1", "태그2" ],
+    "like" : 1
+  }, {
+    "questionId" : 2,
+    "title" : "제목2",
+    "content" : "내용2",
+    "tag" : [ "태그12", "태그22" ],
+    "like" : 2
+  }, {
+    "questionId" : 3,
+    "title" : "제목3",
+    "content" : "내용3",
+    "tag" : [ "태그123", "태그223" ],
+    "like" : 3
+  } ],
+  "pageInfo" : {
+    "page" : 2,
+    "size" : 10,
+    "totalElements" : 13,
+    "totalPages" : 2
+  }
+}</code></pre>
 </div>
-<div class="paragraph">
-<div class="title">response-fields</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/getAll-question/response-fields.adoc[]</p>
 </div>
-<div class="paragraph">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].questionId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].tag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">태그</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].like</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">추천수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 요소</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalPages</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 페이지</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
 <div class="title">response-body</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/getAll-question/response-body.adoc[]</p>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : [ {
+    "questionId" : 1,
+    "title" : "제목1",
+    "content" : "내용1",
+    "tag" : [ "태그1", "태그2" ],
+    "like" : 1
+  }, {
+    "questionId" : 2,
+    "title" : "제목2",
+    "content" : "내용2",
+    "tag" : [ "태그12", "태그22" ],
+    "like" : 2
+  }, {
+    "questionId" : 3,
+    "title" : "제목3",
+    "content" : "내용3",
+    "tag" : [ "태그123", "태그223" ],
+    "like" : 3
+  } ],
+  "pageInfo" : {
+    "page" : 2,
+    "size" : 10,
+    "totalElements" : 13,
+    "totalPages" : 2
+  }
+}</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -847,7 +1001,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. /questions/{question-id}</caption>
+<caption class="title">Table 10. /questions/{question-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -874,17 +1028,24 @@ Host: localhost:8080</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_전체_질문_삭제">1.6. 전체 질문 삭제</h3>
-<div class="paragraph">
+<div class="listingblock">
 <div class="title">curl-request</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/deleteAll-question/curl-request.adoc[]</p>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/questions' -i -X DELETE</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">http-request</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/deleteAll-question/http-request.adoc[]</p>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /questions HTTP/1.1
+Host: localhost:8080</code></pre>
 </div>
-<div class="paragraph">
+</div>
+<div class="listingblock">
 <div class="title">http-response</div>
-<p>Unresolved directive in index.adoc - include::/Users/hwarye/projects/seb42_pre_030/back/viva-stack-overflow/build/generated-snippets/deleteAll-question/http-response.adoc[]</p>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -893,7 +1054,7 @@ Host: localhost:8080</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-02-23 12:02:01 +0900
+Last updated 2023-02-23 12:13:09 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

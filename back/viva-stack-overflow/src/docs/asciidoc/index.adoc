@@ -69,22 +69,22 @@ include::{snippets}/getOne-question/response-fields.adoc[]
 
 === 전체 질문 조회
 .curl-request
-include::{snippets}/getAll-question/curl-request.adoc[]
+include::{snippets}/getAll-questions/curl-request.adoc[]
 
 .http-request
-include::{snippets}/getAll-question/http-request.adoc[]
+include::{snippets}/getAll-questions/http-request.adoc[]
 
 .request-parameters
-include::{snippets}/getAll-question/request-parameters.adoc[]
+include::{snippets}/getAll-questions/request-parameters.adoc[]
 
 .http-response
-include::{snippets}/getAll-question/http-response.adoc[]
+include::{snippets}/getAll-questions/http-response.adoc[]
 
 .response-fields
-include::{snippets}/getAll-question/response-fields.adoc[]
+include::{snippets}/getAll-questions/response-fields.adoc[]
 
 .response-body
-include::{snippets}/getAll-question/response-body.adoc[]
+include::{snippets}/getAll-questions/response-body.adoc[]
 
 === 단일 질문 삭제
 .curl-request
@@ -101,13 +101,13 @@ include::{snippets}/deleteOne-question/http-response.adoc[]
 
 === 전체 질문 삭제
 .curl-request
-include::{snippets}/deleteAll-question/curl-request.adoc[]
+include::{snippets}/deleteAll-questions/curl-request.adoc[]
 
 .http-request
-include::{snippets}/deleteAll-question/http-request.adoc[]
+include::{snippets}/deleteAll-questions/http-request.adoc[]
 
 .http-response
-include::{snippets}/deleteAll-question/http-response.adoc[]
+include::{snippets}/deleteAll-questions/http-response.adoc[]
 
 
 
