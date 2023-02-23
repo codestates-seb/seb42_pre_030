@@ -24,29 +24,18 @@ const Question = function () {
         width: 100%;
     `
 
-    const [글제목, 글제목변경] = useState('');
-
     return (
         <>
-            {
-                글제목.map(function (i) {
-                    return (
-                        <>
-                            <div className='q-post-summary-stats'>
-                                <div className='votes'>0 votes</div>
-                                <div className='answers'>0 answers</div>
-                                <div className='views'>0 views</div>
-                            </div>
-                            <div className='q-post-summary-content'>
-                                <Qtitle><a href="">제목입니다만</a></Qtitle>
-                                <Qmeta>Jens 66.5k modified 16secs ago</Qmeta>
-                            </div>
-                        </>
-                    )
-                })
 
-            }
-
+            <div className='q-post-summary-stats'>
+                <div className='votes'>0 votes</div>
+                <div className='answers'>0 answers</div>
+                <div className='views'>0 views</div>
+            </div>
+            <div className='q-post-summary-content'>
+                <Qtitle><a href="">제목입니다만</a></Qtitle>
+                <Qmeta>Jens 66.5k modified 16secs ago</Qmeta>
+            </div>
 
 
         </>
