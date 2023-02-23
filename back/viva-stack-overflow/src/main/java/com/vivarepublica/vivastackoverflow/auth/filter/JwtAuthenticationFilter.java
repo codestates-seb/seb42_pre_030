@@ -4,8 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vivarepublica.vivastackoverflow.auth.dto.LoginDto;
 import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,11 +23,13 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @AllArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @SneakyThrows
     @Override
@@ -44,6 +49,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
+
+        // refreshToken의 유효시간을 추출
+        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
+        Jws<Claims> claims = jwtTokenizer.getClaims(refreshToken, base64EncodedSecretKey);
+        Long expiration = claims.getBody().getExpiration().getTime() / 1000;
+
+        // redis에 RT:frank@gmail.com(key) / 23jijiofj2io3hi32hiongiodsninioda(value) 형태로 리프레시 토큰 저장하기
+        redisTemplate.opsForValue().set(String.format("RT:%s", member.getEmail()), refreshToken, expiration, TimeUnit.MILLISECONDS);
 
         response.setHeader("Authorization", String.format("Bearer %s", accessToken));
         response.setHeader("Refresh", refreshToken);

@@ -3,10 +3,12 @@ package com.vivarepublica.vivastackoverflow.auth.filter;
 import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import com.vivarepublica.vivastackoverflow.auth.util.CustomAuthorityUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -21,11 +23,22 @@ import java.util.Map;
 public class JwtVerificationFilter extends OncePerRequestFilter {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        // 헤더에서 JWT를 받아온다.
+        String jws = request.getHeader("Authorization").replace("Bearer ", "");
+
+        // 유효한 토큰인지 확인하고 사용자 속성 추출
         Map<String, Object> claims = verifyJws(request);
-        setAuthenticationToContext(claims);
+
+        // Redis에 해당 accessToken 로그아웃 여부 확인
+        String isLogout = (String) redisTemplate.opsForValue().get(jws);
+        // 로그아웃이 되어 있지 않은 경우(isLogout이 "logout"이 아닌 경우) 토큰 정상 작동하기
+        if (ObjectUtils.isEmpty(isLogout)) {
+            setAuthenticationToContext(claims);
+        }
 
         filterChain.doFilter(request, response);
     }
