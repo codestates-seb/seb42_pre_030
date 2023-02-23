@@ -1,10 +1,10 @@
 import styled, { createGlobalStyle } from "styled-components"
 import React from "react";
-import "../../assets/styles/variable.css";
-import * as LoginForm from '../modules/LoginForm';
-import icon_cake from "../../assets/imgs/--icon--gray--cake.png";
-import icon_clock from "../../assets/imgs/--icon--gray--clock.png";
-import icon_calendar from "../../assets/imgs/--icon--gray--calendar.png";
+import "../../Assets/STYLES/variable.css";
+import * as LoginForm from './Login';
+import icon_cake from "../../Assets/imgs/--icon--gray--cake.png";
+import icon_clock from "../../Assets/imgs/--icon--gray--clock.png";
+import icon_calendar from "../../Assets/imgs/--icon--gray--calendar.png";
 
 
 
@@ -16,7 +16,7 @@ const Main = styled.div`
     justify-content: center;
 
 `;
-const Section=styled.div`
+const Section = styled.div`
     
 `;
 const Components = styled.div`
@@ -50,12 +50,12 @@ const Format = (props) => {
         </>
     )
 }
-const TitleCss=styled.div`
+const TitleCss = styled.div`
     font-size: 30px;
     color:var(--gray-500);
     margin-bottom: 8px;
 `;
-const BoxCss=styled.div`
+const BoxCss = styled.div`
     height: 55px;
     border: 1px solid #dbdbdb;
     border-radius: 3px;
@@ -123,31 +123,31 @@ const UserInfo = () => {
         <>
             <Main>
                 <Section>
-                <Components>
-                    <Info>
-                        <InfoL>이름</InfoL>
-                        <InfoM>
-                            <Username>성이름</Username>
-                            <UserDate>
-                                <ItemIcon href={icon_cake} text="Member for 8 days"></ItemIcon>
-                                <ItemIcon href={icon_clock} text="Last seen this week"></ItemIcon>
-                                <ItemIcon href={icon_calendar} text="Visited 4 days, 1 consecutive"></ItemIcon>
-                            </UserDate>
-                        </InfoM>
-                    </Info>
-                    <Navigatiion>
-                        <MenuDiv text="Profile" />
-                        <MenuDiv text="Activity" />
-                        <MenuDiv text="Settings" />
-                    </Navigatiion>
-                    <ContentProfile>
-                        <Format title="Stats" />
-                        <Format title="About"/>
-                        <Format title="Badges"/>
-                        <Format title="Posts"/>
-                        <Format title="Communities"/>
-                    </ContentProfile>
-                </Components>
+                    <Components>
+                        <Info>
+                            <InfoL>이름</InfoL>
+                            <InfoM>
+                                <Username>성이름</Username>
+                                <UserDate>
+                                    <ItemIcon href={icon_cake} text="Member for 8 days"></ItemIcon>
+                                    <ItemIcon href={icon_clock} text="Last seen this week"></ItemIcon>
+                                    <ItemIcon href={icon_calendar} text="Visited 4 days, 1 consecutive"></ItemIcon>
+                                </UserDate>
+                            </InfoM>
+                        </Info>
+                        <Navigatiion>
+                            <MenuDiv text="Profile" />
+                            <MenuDiv text="Activity" />
+                            <MenuDiv text="Settings" />
+                        </Navigatiion>
+                        <ContentProfile>
+                            <Format title="Stats" />
+                            <Format title="About" />
+                            <Format title="Badges" />
+                            <Format title="Posts" />
+                            <Format title="Communities" />
+                        </ContentProfile>
+                    </Components>
                 </Section>
             </Main>
         </>

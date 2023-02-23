@@ -1,16 +1,16 @@
 import styled, { createGlobalStyle } from "styled-components";
 import React, { useEffect, useState } from "react";
 import ReCAPTCHA from "./ReCAPTCHA";
-import "../../assets/styles/variable.css";
-import icon_fb from "../../assets/imgs/--icon--facebook.png";
-import icon_google from "../../assets/imgs/--icon--google.png";
-import icon_github from "../../assets/imgs/--icon--github.png";
-import icon_q from "../../assets/imgs/--icon--question-mark.png";
-import icon_bq from "../../assets/imgs/--icon--blue--question-mark.png";
-import icon_vote from "../../assets/imgs/--icon--blue--vote.png";
-import icon_tag from "../../assets/imgs/--icon--blue--tag.png";
-import icon_trophy from "../../assets/imgs/--icon--blue--trophy.png";
-import * as LoginForm from '../modules/LoginForm';
+import "../../Assets/STYLES/variable.css";
+import icon_fb from "../../Assets/IMG/--icon--facebook.png";
+import icon_google from "../../Assets/IMG/--icon--google.png";
+import icon_github from "../../Assets/IMG/--icon--github.png";
+import icon_q from "../../Assets/imgs/--icon--question-mark.png";
+import icon_bq from "../../Assets/imgs/--icon--blue--question-mark.png";
+import icon_vote from "../../Assets/imgs/--icon--blue--vote.png";
+import icon_tag from "../../Assets/imgs/--icon--blue--tag.png";
+import icon_trophy from "../../Assets/imgs/--icon--blue--trophy.png";
+import * as LoginForm from './Login';
 
 
 const Container = styled.div`

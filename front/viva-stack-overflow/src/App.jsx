@@ -10,6 +10,8 @@ import Login from './Pages/Login';
 import QuestionSubmitPage from './Pages/QuestionSubmitPage';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import UserInfo from './Components/Modules/UserInfo';
+import SignupForm from './Components/Modules/SignUpForm';
 
 function App() {
   return (
@@ -18,8 +20,8 @@ function App() {
         <Route path='/' element={<HomeUnLoginPage />}></Route>
         <Route path='/home' element={<HomeLoginPage />}></Route>
         <Route path='/login' element={<Login />}></Route>
-        <Route path='/signup' ></Route>
-        <Route path='/mypage' ></Route>
+        <Route path='/signup' element={<SignupForm />}></Route>
+        <Route path='/mypage' element={<UserInfo />}></Route>
         <Route path='/mypage/edit' ></Route>
         <Route path='/questionsubmit' element={<QuestionSubmitPage />}></Route>
         <Route path='/answerquestion' element={<AnswerQuestionLoginPage />}></Route>
