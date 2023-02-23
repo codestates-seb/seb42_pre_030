@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import React, { useEffect, useState } from "react";
-import "../../assets/styles/variable.css";
+import "../../Assets/STYLES/GlobalStyle";
 
 const Sidebar = function () {
   const Sidebar = styled.nav`
@@ -60,17 +60,17 @@ const Sidebar = function () {
 
 
   return (
-    <>
-      <Sidebar>
-        <SidebarUl>
-          <SidebarList className={'selected'} to='/'>Home</SidebarList>
-          <SidebarLiPublicLi>
-            <SidebarList className={'selected'} to='/questions'>Questions</SidebarList>
-            <SidebarList className={'selected'} to='/tags'>Tags</SidebarList>
-          </SidebarLiPublicLi>
-        </SidebarUl>
-      </Sidebar>
-    </>
+
+    <Sidebar>
+      <SidebarUl>
+        <SidebarList className={'selected'} to='/'>Home</SidebarList>
+        <SidebarLiPublicLi>
+          <SidebarList className={'selected'} to='/questions'>Questions</SidebarList>
+          <SidebarList className={'selected'} to='/tags'>Tags</SidebarList>
+        </SidebarLiPublicLi>
+      </SidebarUl>
+    </Sidebar>
+
   )
 }
 
