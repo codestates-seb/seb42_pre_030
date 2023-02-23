@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -27,4 +29,8 @@ public class Question {
 
     @Column
     private String tag;
+
+    // Todo: Question cascade를 위해서 양방향 매핑 적용. -- !.Question Domain 구현이 완료되면 지울 예정
+//    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) // Todo: Question 구현이 완료되면 적용
+//    List<Answer> Answers = new ArrayList<>();
 }

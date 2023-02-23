@@ -33,4 +33,22 @@ public class Answer /*extends Auditable*/ {
      * Todo: 수정일 - modifiedAt */
 
     // Todo: 첨부파일 Advanced
+
+    public void setMember(Member member) { // 양방향 매핑
+        this.member = member;
+        if (!this.member.getAnswers().contains(this)) {
+            this.member.getAnswers().add(this);
+        }
+    }
+
+//    public void setQuestion(Question question) { // 양방향 매핑 // Todo: Question 구현이 완료되면 적용
+//        this.question = question;
+//        if (!this.question.getAnswers().contains(this)) {
+//            this.question.getAnswers().add(this);
+//        }
+//    }
+
+    public Answer(String content) { // Slice Test에서 Stub 데이터를 생성하기 위한 생성자
+        this.content = content;
+    }
 }
