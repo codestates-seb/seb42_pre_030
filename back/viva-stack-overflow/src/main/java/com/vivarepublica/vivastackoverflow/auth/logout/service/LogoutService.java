@@ -1,6 +1,6 @@
-package com.vivarepublica.vivastackoverflow.auth.service;
+package com.vivarepublica.vivastackoverflow.auth.logout.service;
 
-import com.vivarepublica.vivastackoverflow.auth.dto.LogoutDto;
+import com.vivarepublica.vivastackoverflow.auth.logout.dto.LogoutDto;
 import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

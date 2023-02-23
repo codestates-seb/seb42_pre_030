@@ -1,10 +1,9 @@
-package com.vivarepublica.vivastackoverflow.auth.controller;
+package com.vivarepublica.vivastackoverflow.auth.logout.controller;
 
-import com.vivarepublica.vivastackoverflow.auth.service.LogoutService;
-import com.vivarepublica.vivastackoverflow.auth.dto.LogoutDto;
+import com.vivarepublica.vivastackoverflow.auth.logout.service.LogoutService;
+import com.vivarepublica.vivastackoverflow.auth.logout.dto.LogoutDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
