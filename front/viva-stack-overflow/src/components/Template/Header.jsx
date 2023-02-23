@@ -1,6 +1,10 @@
+import { useState } from "react";
+
 import styled from "styled-components";
 import "../../Assets/STYLES/GlobalStyle";
 import homeButton from '../../Assets/IMG/--logo--viva--black.png';
+import dummydata from '../../Data/dummydata.json'
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -57,8 +61,7 @@ const Header = () => {
     const TopbarButtonContainer = styled.div`
         display: flex;
         margin-left: 10px;
-        text-decoration-line: none;
-    `
+        `
 
     const LoginOutButton = styled.button`
         all: unset;
@@ -87,21 +90,28 @@ const Header = () => {
         `;
 
 
+
+
+
     return (
         <>
             <Headers>
                 <TopbarContainer>
                     <TopbarBox1>
-                        <a href='https://stackoverflow.com/'>
+                        <Link to={"/"}>
                             <HomeLogo src={homeButton} alt="logo" />
-                        </a>
+                        </Link>
                     </TopbarBox1>
                     <TopbarBox2>
-                        <SearchBox placeholder='Search' maxLength={'240'}></SearchBox>
+                        <SearchBox type="text" placeholder='Search' maxLength={'240'}></SearchBox>
                     </TopbarBox2>
                     <TopbarBox3>
-                        <TopbarButtonContainer href='/login' ><LoginOutButton>Log in</LoginOutButton></TopbarButtonContainer>
-                        <TopbarButtonContainer href='/signup' ><SignUpButton>Sign up</SignUpButton></TopbarButtonContainer>
+                        <Link to={"/login"} style={{ textDecoration: 'none' }}>
+                            <TopbarButtonContainer href='/login' ><LoginOutButton>Log in</LoginOutButton></TopbarButtonContainer>
+                        </Link>
+                        <Link to={"/signup"} style={{ textDecoration: 'none' }}>
+                            <TopbarButtonContainer href='/signup' ><SignUpButton>Sign up</SignUpButton></TopbarButtonContainer>
+                        </Link>
                         {/*<TopbarButtonContainer href='/mypage' ><img className='topbar--item mypage' src='anything.ng'></img></TopbarButtonContainer>*/}
                     </TopbarBox3>
                 </TopbarContainer>

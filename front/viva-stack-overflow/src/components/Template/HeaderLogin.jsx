@@ -1,8 +1,10 @@
+import { Link } from "react";
+
 import styled from "styled-components";
 import "../../Assets/STYLES/GlobalStyle";
 import homeButton from '../../Assets/IMG/--logo--viva--black.png';
 
-const Header = () => {
+const Headers = () => {
 
     const Headers = styled.div`
     align-items: center;
@@ -62,7 +64,7 @@ const Header = () => {
 
 
 
-    const MyPageButton = styled.button`
+    const UserButton = styled.button`
         background-color: rgb(225, 236, 244);
         box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.3);
         border: 1px solid rgb(57, 115, 157);
@@ -78,12 +80,15 @@ const Header = () => {
         }
     `
 
+    const LogoutButton = styled.button`
+    `
+
     return (
 
         <Headers>
             <TopbarContainer>
                 <TopbarBox1>
-                    <a href='https://stackoverflow.com/'>
+                    <a href='/'>
                         <HomeLogo src={homeButton} alt="logo" />
                     </a>
                 </TopbarBox1>
@@ -91,7 +96,8 @@ const Header = () => {
                     <SearchBox placeholder='Search' maxLength={'240'}></SearchBox>
                 </TopbarBox2>
                 <TopbarBox3>
-                    <TopbarButtonContainer href='/mypage' ><MyPageButton>MyPage</MyPageButton></TopbarButtonContainer>
+                    <TopbarButtonContainer href='/mypage' ><UserButton>MyPage</UserButton></TopbarButtonContainer>
+                    <TopbarButtonContainer href='/'><LogoutButton>Logout</LogoutButton></TopbarButtonContainer>
                 </TopbarBox3>
             </TopbarContainer>
         </Headers>
@@ -99,4 +105,5 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Headers;
+

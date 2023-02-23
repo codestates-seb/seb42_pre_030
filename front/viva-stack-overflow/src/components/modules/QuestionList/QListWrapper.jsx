@@ -49,7 +49,6 @@ const QListWrapper = function () {
     width: 60vw;
     `
 
-
     return (
         <QlistWrapper>
             <QminiList>

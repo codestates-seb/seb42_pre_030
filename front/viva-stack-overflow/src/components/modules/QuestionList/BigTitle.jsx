@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 const QuestionList = function () {
@@ -37,10 +38,9 @@ const QuestionList = function () {
     return (
         <BigTitle>
             <TopQuestions>Top Questions</TopQuestions>
-            <AskButton>
-                <a href='/questions/ask' className="q-btn-link"></a>
-                Ask Question
-            </AskButton>
+            <Link to={'/questionsubmit'}>
+                <AskButton>Ask Question</AskButton>
+            </Link>
         </BigTitle>
     )
 }

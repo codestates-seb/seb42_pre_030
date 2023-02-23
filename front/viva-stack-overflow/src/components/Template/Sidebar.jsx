@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 import React, { useEffect, useState } from "react";
 import "../../Assets/STYLES/GlobalStyle";
+import { Link } from "react-router-dom";
 
 const Sidebar = function () {
   const Sidebar = styled.nav`
@@ -63,9 +64,13 @@ const Sidebar = function () {
 
     <Sidebar>
       <SidebarUl>
-        <SidebarList className={'selected'} to='/'>Home</SidebarList>
+        <Link to={"/"} style={{ textDecoration: 'none' }}>
+          <SidebarList className={'selected'} to='/'>Home</SidebarList>
+        </Link>
         <SidebarLiPublicLi>
-          <SidebarList className={'selected'} to='/questions'>Questions</SidebarList>
+          <Link to={"/"} style={{ textDecoration: 'none' }}>
+            <SidebarList className={'selected'} to='/questions'>Questions</SidebarList>
+          </Link>
           <SidebarList className={'selected'} to='/tags'>Tags</SidebarList>
         </SidebarLiPublicLi>
       </SidebarUl>

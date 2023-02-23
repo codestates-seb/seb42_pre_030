@@ -3,6 +3,7 @@ import Footer from "../Components/Template/Footer";
 import Header from "../Components/Template/Header";
 import Sidebar from "../Components/Template/Sidebar";
 import QuestionSubmit from '../Components/Mains/QuestionSubmit'
+import HeaderLogin from "../Components/Template/HeaderLogin";
 
 
 const QuestionSubmitPage = function () {
@@ -16,12 +17,11 @@ const QuestionSubmitPage = function () {
 
     return (
         <>
-            <Header />
+            <HeaderLogin />
             <MainBar>
                 <Sidebar />
                 <QuestionSubmit />
             </MainBar>
-            <Footer />
         </>
     )
 }
