@@ -1,0 +1,74 @@
+{
+    "questions" : {
+      "questionId": 9,
+      "usersId": "testUser",
+      "title": "test title",
+      "content": "# 제목1\n\n**뷰어 테스트 해보기**\n*이탤릭 문서*\n~~ㅈㅏ바스크립트~~\n\n***\n> 블록테스트\n\n```html\n<h1>Test<h1>\n<div>title</div>\n<p>합참 \"북한, 너무 아름다운다운다운다운뷰 너무아름다운다운다운다운뷰더보여줘다음다음다음다음뷰 포격\"\n출처 : SBS 뉴스 \n원본 링크 :</p>\n\n```\n\n코드 질문합니다",
+      "views": 2,
+      "votes": 0,
+      "status": "NONE",
+      "displayName" : "kdy",
+      "createdAt": "2022-10-27 12:00:00",
+      "modifiedAt": "2022-10-27 12:03:37",
+      
+  
+      "answerList": [
+        {
+          "answerId": 1,
+          "questionId": 1,
+          "usersId": "answerUser1",
+          "content": "나는 어떻게 하는지 한 개도 모르는 말하는 감자랍니다 ~1",
+          "votes": 1,
+          "voteStatus": "UP",
+          "displayName" : "cheese",
+          "createdAt": "2022-10-27 12:04:00",
+          "modifiedAt": "2022-10-27 12:04:08",
+          "commentList": [
+            {
+              "commentId": 1,
+              "answerId": 1,
+              "usersId": "commentUser1",
+              "displayName" : "dgegrd1",
+              "content": "말하는 감자를 찾습니다 ~",
+              "createdAt": "2022-10-28 12:06:00"
+            }
+          ]
+        },
+        {
+          "answerId": 2,
+          "usersId": "answerUser2",
+          "questionId": 1,
+          "content": "징짜..너무 머리아프고요",
+          "displayName" : "cheese2",
+          "votes": 0,
+          "voteStatus": "DOWN",
+          "createdAt": "2022-10-27 12:04:00",
+          "modifiedAt": "2022-10-27 12:04:08",
+          "commentList": [
+            {
+              "commentId": 2,
+              "answerId": 2,
+              "usersId": "commentUser",
+              "displayName" : "asdasd1",
+              "content": "손을 내밀어도 ~ ",
+              "createdAt": "2022-10-27 12:06:00"
+            },{
+              "commentId": 3,
+              "answerId": 3,
+              "usersId": "commentUser",
+              "displayName" : "aukyu",
+              "content": "어캄 ㅠ퓨ㅠ 나 모태 ㅠㅠ",
+              "createdAt": "2022-10-27 12:06:00"
+            },{
+              "commentId": 4,
+              "answerId": 4,
+              "usersId": "commentUser",
+              "displayName" : "ajyj",
+              "content": "아저씨 어서일어나요 길에서 자면 큰일나 ~",
+              "createdAt": "2022-10-27 12:06:00"
+            }
+          ]
+        }    
+      ]
+    }
+  }
