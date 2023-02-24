@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vivarepublica.vivastackoverflow.auth.dto.LoginDto;
 import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -51,11 +49,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String refreshToken = delegateRefreshToken(member);
 
         // refreshToken의 유효시간을 추출
-        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
-        Jws<Claims> claims = jwtTokenizer.getClaims(refreshToken, base64EncodedSecretKey);
-        Long expiration = claims.getBody().getExpiration().getTime() / 1000;
+        Long expiration = jwtTokenizer.getRemainingExpiration(refreshToken);
 
-        // redis에 RT:frank@gmail.com(key) / 23jijiofj2io3hi32hiongiodsninioda(value) 형태로 리프레시 토큰 저장하기
+        // Redis에 RT:frank@gmail.com(key) / 23jijiofj2io3hi32hiongiodsninioda(value) 형태로 리프레시 토큰 저장하기
         redisTemplate.opsForValue().set(String.format("RT:%s", member.getEmail()), refreshToken, expiration, TimeUnit.MILLISECONDS);
 
         response.setHeader("Authorization", String.format("Bearer %s", accessToken));

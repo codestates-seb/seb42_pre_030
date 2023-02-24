@@ -27,19 +27,15 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // 헤더에서 JWT를 받아온다.
+        // 앞의 Bearer를 제거한 순수한 accessToken
         String jws = request.getHeader("Authorization").replace("Bearer ", "");
-
         // 유효한 토큰인지 확인하고 사용자 속성 추출
         Map<String, Object> claims = verifyJws(request);
 
-        // Redis에 해당 accessToken 로그아웃 여부 확인
-        String isLogout = (String) redisTemplate.opsForValue().get(jws);
-        // 로그아웃이 되어 있지 않은 경우(isLogout이 "logout"이 아닌 경우) 토큰 정상 작동하기
-        if (ObjectUtils.isEmpty(isLogout)) {
-            setAuthenticationToContext(claims);
-        }
+        // Redis에 해당 accessToken 로그아웃 여부(저장 여부) 확인
+        verifyLogout(jws, claims);
 
+        // 다음 필터 호출
         filterChain.doFilter(request, response);
     }
 
@@ -55,6 +51,16 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
 
         return jwtTokenizer.getClaims(jws, base64EncodedSecretKey).getBody();
+    }
+
+    private void verifyLogout(String jws, Map<String, Object> claims) {
+        // 로그아웃 되어 있으면 String isLogout = "logout" (Redis에 해당 accessToken이 저장되어 있으므로)
+        String isLogout = (String) redisTemplate.opsForValue().get(jws);
+        // 로그아웃이 되어 있지 않은 경우(isLogout이 "logout"이 아닌 경우)
+        if (ObjectUtils.isEmpty(isLogout)) {
+            // SecurityContext에 Authentication 저장
+            setAuthenticationToContext(claims);
+        }
     }
 
     private void setAuthenticationToContext(Map<String, Object> claims) {
