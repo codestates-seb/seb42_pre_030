@@ -104,3 +104,17 @@ include::{snippets}/get-answers/http-response.adoc[]
 
 .response-fields
 include::{snippets}/get-answers/response-fields.adoc[]
+
+== LogoutController
+=== 로그아웃
+.curl-request
+include::{snippets}/post-logout/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-logout/http-request.adoc[]
+
+.request-fields
+include::{snippets}/post-logout/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-logout/http-response.adoc[]
