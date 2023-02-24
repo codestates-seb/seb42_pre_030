@@ -1,5 +1,6 @@
 package com.vivarepublica.vivastackoverflow.domain.member.entity;
 
+import com.vivarepublica.vivastackoverflow.audit.Auditable;
 import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Member {
+public class Member extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;

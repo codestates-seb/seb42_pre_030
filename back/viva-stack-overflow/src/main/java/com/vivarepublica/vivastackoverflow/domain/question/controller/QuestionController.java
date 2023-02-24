@@ -71,7 +71,7 @@ public class QuestionController {
                                                         new QuestionDto.ResponseDto(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
                                                         new QuestionDto.ResponseDto(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3));
 
-        Page<QuestionDto.ResponseDto> pageQuestions = new PageImpl<>(getAll, PageRequest.of(page,size),3);
+        Page<QuestionDto.ResponseDto> pageQuestions = new PageImpl<>(getAll, PageRequest.of(page,size),getAll.size());
         List<QuestionDto.ResponseDto> responseList = pageQuestions.getContent();
 
         return new ResponseEntity(new MultiResponseDto<>(responseList, pageQuestions), HttpStatus.OK);

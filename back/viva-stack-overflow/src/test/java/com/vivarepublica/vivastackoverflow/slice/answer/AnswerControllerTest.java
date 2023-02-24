@@ -4,7 +4,11 @@ import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import com.vivarepublica.vivastackoverflow.domain.answer.controller.AnswerController;
 import com.vivarepublica.vivastackoverflow.domain.answer.dto.AnswerDto;
+import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
+import com.vivarepublica.vivastackoverflow.domain.answer.mapper.AnswerMapper;
+import com.vivarepublica.vivastackoverflow.domain.answer.service.AnswerService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,7 +21,6 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.springframework.restdocs.request.ParameterDescriptor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -88,7 +91,9 @@ public class AnswerControllerTest {
                 getRequestPreProcessor(),
                 getResponsePreProcessor(),
                 requestFields(
-                                fieldWithPath("content").type(JsonFieldType.STRING).description("답변내용")
+                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별 ID"),
+                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별 ID"),
+                        fieldWithPath("content").type(JsonFieldType.STRING).description("답변내용")
                 ),
                 responseHeaders(
                         headerWithName(HttpHeaders.LOCATION).description("Location header. 등록된 리소스의 URI")
@@ -148,11 +153,11 @@ public class AnswerControllerTest {
 
         Page<Answer> pageAnswers = new PageImpl<>(answers, PageRequest.of(0, 10),answers.size());
 
-        List<AnswerDto.Response> responseAnswerList = List.of(new AnswerDto.Response(1L, "Answer Get 태스트 입니다", 1L, "test1@gmai5.com", "testUser1"),
-                new AnswerDto.Response(2L, "Answer Get 태스트 입니다", 2L, "test2@gmai5.com", "testUser2"),
-                new AnswerDto.Response(3L, "Answer Get 태스트 입니다", 3L, "test3@gmai5.com", "testUser3"),
-                new AnswerDto.Response(3L, "Answer Get 태스트 입니다", 4L, "test4@gmai5.com", "testUser4"),
-                new AnswerDto.Response(3L, "Answer Get 태스트 입니다", 5L, "test5@gmai5.com", "testUser5"));
+        List<AnswerDto.Response> responseAnswerList = List.of(new AnswerDto.Response(1L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(1L, "test1@gmai5.com", "testUser1")),
+                new AnswerDto.Response(2L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12",  new AnswerDto.Response.AnswerMember(2L, "test2@gmai5.com", "testUser2")),
+                new AnswerDto.Response(3L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(3L, "test3@gmai5.com", "testUser3")),
+                new AnswerDto.Response(4L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(4L, "test4@gmai5.com", "testUser4")),
+                new AnswerDto.Response(5L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(5L, "test5@gmai5.com", "testUser5")));
 
         given(answerService.findAnswers(Mockito.anyLong(), Mockito.anyInt(), Mockito.anyInt())).willReturn(pageAnswers);
         given(answerMapper.answerToAnswerResponseDtos(Mockito.anyList())).willReturn(responseAnswerList);
@@ -160,7 +165,7 @@ public class AnswerControllerTest {
         // when
         ResultActions getsActions =
                 mockMvc.perform(
-                        get("/answers")
+                        get("/answers/{question-id}", 1L)
                                 .accept(MediaType.APPLICATION_JSON)
                                 .params(queryParams)
                 );
@@ -178,6 +183,8 @@ public class AnswerControllerTest {
                 "get-answers",
                 getRequestPreProcessor(),
                 getResponsePreProcessor(),
+                pathParameters(
+                        parameterWithName("question-id").description("질문 식별자 ID")),
                 requestParameters(
                         List.of(
                         parameterWithName("page").description("Page 번호(0부터 시작하는 페이지 인덱스)"),
@@ -186,6 +193,11 @@ public class AnswerControllerTest {
                         List.of(fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터"),
                                 fieldWithPath("data[].answerId").type(JsonFieldType.NUMBER).description("답변 식별자 ID"),
                                 fieldWithPath("data[].content").type(JsonFieldType.STRING).description("답변 내용"),
+                                fieldWithPath("data[].createdAt").type(JsonFieldType.STRING).description("답변 작성일"),
+                                fieldWithPath("data[].answerMember").type(JsonFieldType.OBJECT).description("답변 작성자 데이터"),
+                                fieldWithPath("data[].answerMember.memberId").type(JsonFieldType.NUMBER).description("회원 식별자 ID"),
+                                fieldWithPath("data[].answerMember.email").type(JsonFieldType.STRING).description("이메일"),
+                                fieldWithPath("data[].answerMember.nickname").type(JsonFieldType.STRING).description("별명"),
 
                                 fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                 fieldWithPath("pageInfo.page").type(JsonFieldType.NUMBER).description("페이지 수"),

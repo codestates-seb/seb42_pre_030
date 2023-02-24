@@ -1,17 +1,21 @@
 package com.vivarepublica.vivastackoverflow.domain.answer.entity;
 
+import com.vivarepublica.vivastackoverflow.audit.Auditable;
 import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
+import com.vivarepublica.vivastackoverflow.domain.question.entity.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Answer /*extends Auditable*/ {
+public class Answer extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
     private Long answerId;
@@ -27,10 +31,7 @@ public class Answer /*extends Auditable*/ {
     @Column(nullable = false, length = 9999) // Content length = ? | columnDefinition = "TEXT" <- DataBase 타입 결정
     private String content;
 
-    /* Auditable 처리
-     * Todo: 작성일 - createdAt
-     *
-     * Todo: 수정일 - modifiedAt */
+    private String prettyCreatedAt;
 
     // Todo: 첨부파일 Advanced
 
@@ -40,13 +41,17 @@ public class Answer /*extends Auditable*/ {
             this.member.getAnswers().add(this);
         }
     }
+    public void setQuestion(Question question) { // 양방향 매핑
+        this.question = question;
+        if (!this.question.getAnswers().contains(this)) {
+            this.question.getAnswers().add(this);
+        }
+    }
 
-//    public void setQuestion(Question question) { // 양방향 매핑 // Todo: Question 구현이 완료되면 적용
-//        this.question = question;
-//        if (!this.question.getAnswers().contains(this)) {
-//            this.question.getAnswers().add(this);
-//        }
-//    }
+    public void setPrettyCreatedAt() { // LocalDateTime String 이쁘게 format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.prettyCreatedAt = getCreatedAt().format(formatter);
+    }
 
     public Answer(String content) { // Slice Test에서 Stub 데이터를 생성하기 위한 생성자
         this.content = content;
