@@ -83,6 +83,12 @@ public class JwtTokenizer {
         return calendar.getTime();
     }
 
+    public Long getRemainingExpiration(String token) {
+        String base64EncodedSecretKey = encodeBase64SecretKey(secretKey);
+        Jws<Claims> claims = getClaims(token, base64EncodedSecretKey);
+        return claims.getBody().getExpiration().getTime() / 1000;
+    }
+
     private Key getKeyFromBase64EncodedKey(String base64EncodedSecretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(base64EncodedSecretKey);
 
