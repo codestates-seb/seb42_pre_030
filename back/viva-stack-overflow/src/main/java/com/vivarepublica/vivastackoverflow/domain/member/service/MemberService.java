@@ -37,10 +37,9 @@ public class MemberService {
     public Member updateMember(Member member) {
         Member foundMember = findVerifiedMember(member.getMemberId());
 
-        Optional.ofNullable(member.getNickname())
-                .ifPresent(foundMember::setNickname);
+        foundMember.setNickname(member.getNickname());
 
-        return memberRepository.save(foundMember);
+        return foundMember;
     }
 
     @Transactional(readOnly = true)
