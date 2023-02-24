@@ -1,27 +1,28 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+import Header from '../Components/Template/Header'
 import Sidebar from '../Components/Template/Sidebar';
-import QuestionList from '../Components/Mains/QuestionList'
-import HeaderWithLogin from "../Components/Template/HeaderWithLogin";
+import SignUp from '../Components/Mains/SignUp'
 
 
-const HomeLoginPage = function () {
+const Login = function () {
 
     const MainBar = styled.div`
     display: flex;
     flex-direction: row;
     width: 500px;
+    
 `
 
     return (
         <>
-            <HeaderWithLogin />
+            <Header />
             <MainBar>
                 <Sidebar />
-                <QuestionList />
+                <SignUp />
             </MainBar>
         </>
     )
 }
 
-export default HomeLoginPage;
+export default Login;

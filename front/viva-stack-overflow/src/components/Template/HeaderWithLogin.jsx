@@ -1,10 +1,12 @@
-import { Link } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 import "../../Assets/STYLES/GlobalStyle";
 import homeButton from '../../Assets/IMG/--logo--viva--black.png';
+import dummydata from '../../Data/dummydata.json'
+import { Link } from "react-router-dom";
 
-const Headers = () => {
+const HeaderWithLogin = () => {
 
     const Headers = styled.div`
     align-items: center;
@@ -59,12 +61,10 @@ const Headers = () => {
     const TopbarButtonContainer = styled.div`
         display: flex;
         margin-left: 10px;
-        text-decoration-line: none;
-    `
+        `
 
-
-
-    const UserButton = styled.button`
+    const LoginOutButton = styled.button`
+        all: unset;
         background-color: rgb(225, 236, 244);
         box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.3);
         border: 1px solid rgb(57, 115, 157);
@@ -74,36 +74,50 @@ const Headers = () => {
         font-weight: 400;
         height: 32px;
         text-align: center;
-        width: 70px;
+        width: 60px;
         &:hover {
             background-color: rgb(185, 210, 232);
         }
-    `
+        `
 
-    const LogoutButton = styled.button`
-    `
+    const SignUpButton = styled(LoginOutButton)`
+        background-color: rgb(10, 149, 255);
+        color: rgb(255, 255, 255);
+        width: 65px;
+        &:hover {
+            background-color: rgb(49, 114, 198);
+        }
+        `;
+
+
+
+
 
     return (
-
-        <Headers>
-            <TopbarContainer>
-                <TopbarBox1>
-                    <a href='/'>
-                        <HomeLogo src={homeButton} alt="logo" />
-                    </a>
-                </TopbarBox1>
-                <TopbarBox2>
-                    <SearchBox placeholder='Search' maxLength={'240'}></SearchBox>
-                </TopbarBox2>
-                <TopbarBox3>
-                    <TopbarButtonContainer href='/mypage' ><UserButton>MyPage</UserButton></TopbarButtonContainer>
-                    <TopbarButtonContainer href='/'><LogoutButton>Logout</LogoutButton></TopbarButtonContainer>
-                </TopbarBox3>
-            </TopbarContainer>
-        </Headers>
-
+        <>
+            <Headers>
+                <TopbarContainer>
+                    <TopbarBox1>
+                        <Link to={"/"}>
+                            <HomeLogo src={homeButton} alt="logo" />
+                        </Link>
+                    </TopbarBox1>
+                    <TopbarBox2>
+                        <SearchBox type="text" placeholder='Search' maxLength={'240'}></SearchBox>
+                    </TopbarBox2>
+                    <TopbarBox3>
+                        <Link to={"/mypage"} style={{ textDecoration: 'none' }}>
+                            <TopbarButtonContainer href='/mypage' ><LoginOutButton>MyPage</LoginOutButton></TopbarButtonContainer>
+                        </Link>
+                        <Link to={"/"} style={{ textDecoration: 'none' }}>
+                            <TopbarButtonContainer href='/' ><SignUpButton>Logout</SignUpButton></TopbarButtonContainer>
+                        </Link>
+                        {/*<TopbarButtonContainer href='/mypage' ><img className='topbar--item mypage' src='anything.ng'></img></TopbarButtonContainer>*/}
+                    </TopbarBox3>
+                </TopbarContainer>
+            </Headers>
+        </>
     )
 }
 
-export default Headers;
-
+export default HeaderWithLogin;

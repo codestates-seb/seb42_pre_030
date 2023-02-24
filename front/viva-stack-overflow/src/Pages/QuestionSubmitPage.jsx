@@ -1,9 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
-import Footer from "../Components/Template/Footer";
-import Header from "../Components/Template/Header";
 import Sidebar from "../Components/Template/Sidebar";
 import QuestionSubmit from '../Components/Mains/QuestionSubmit'
-import HeaderLogin from "../Components/Template/HeaderLogin";
+import HeaderWithLogin from "../Components/Template/HeaderWithLogin";
 
 
 const QuestionSubmitPage = function () {
@@ -17,7 +15,7 @@ const QuestionSubmitPage = function () {
 
     return (
         <>
-            <HeaderLogin />
+            <HeaderWithLogin />
             <MainBar>
                 <Sidebar />
                 <QuestionSubmit />

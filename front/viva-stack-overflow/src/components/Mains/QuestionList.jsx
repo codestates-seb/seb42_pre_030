@@ -22,6 +22,8 @@ const QuestionsMain = () => {
                 <QListWrapper />
                 <QListWrapper />
                 <QListWrapper />
+                <QListWrapper />
+                <QListWrapper />
             </Mainpage>
         </>
     )

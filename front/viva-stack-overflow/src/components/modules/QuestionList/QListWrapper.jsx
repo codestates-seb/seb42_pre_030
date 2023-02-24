@@ -1,10 +1,11 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+import Question from './Question'
 
 const QListWrapper = function () {
 
 
-    const QlistWrapper = styled.div`
+    const QlistsWrapper = styled.div`
         border: 1px solid #c5c5c5;
         border-width: ${(props) => (props.isLast ? "1px 0 1px 0" : "1px 0 0 0")};
         display: flex;
@@ -31,15 +32,15 @@ const QListWrapper = function () {
     `
 
     return (
-        <QlistWrapper>
+        <QlistsWrapper>
             <QminiList>
 
                 <Qsummary>
-
+                    <Question />
                 </Qsummary>
 
             </QminiList>
-        </QlistWrapper>
+        </QlistsWrapper>
     )
 }
 

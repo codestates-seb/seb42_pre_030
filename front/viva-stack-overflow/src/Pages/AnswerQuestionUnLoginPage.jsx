@@ -1,8 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-import HeaderLogin from '../Components/Template/HeaderLogin'
 import Sidebar from '../Components/Template/Sidebar';
 import AnswerQuestion from '../Components/Mains/AnswerQuestion'
+import HeaderWithLogin from "../Components/Template/HeaderWithLogin";
 
 
 const AnswerQuestionUnLoginPage = function () {
@@ -16,7 +16,7 @@ const AnswerQuestionUnLoginPage = function () {
 
     return (
         <>
-            <HeaderLogin />
+            <HeaderWithLogin />
             <MainBar>
                 <Sidebar />
                 <AnswerQuestion />

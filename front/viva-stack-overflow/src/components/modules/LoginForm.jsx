@@ -6,24 +6,24 @@ import "../../Assets/STYLES/variable.css";
 import icon_fb from "../../Assets/IMG/--icon--facebook.png";
 import icon_google from "../../Assets/IMG/--icon--google.png";
 import icon_github from "../../Assets/IMG/--icon--github.png";
-import logo_stackoverflow from "../../Assets/IMG/--logo--stackoverflow.png";
+import logo_stackoverflow from "../../Assets/IMG/--logo--toss.png";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 body {
     box-sizing: content-box;
     background-color: var(--gray-100);
 }
 `;
 
-const Main = styled.div`
+export const Main = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px 16px;
+    padding: 24px 280px;
 `;
-const Components = styled.div`
+export const Components = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +37,7 @@ const StackoverflowImg = styled.img.attrs({
     margin-bottom: 24px;
 `;
 
-const SocialLoginBtn = styled.div`
+export const SocialLoginBtn = styled.div`
     height: 14.992px;
     width: 245.242px;
     border: 1px solid #dbdbdb;
@@ -52,7 +52,7 @@ const SocialLoginBtn = styled.div`
     color: ${(props) => props.color ? props.color : "black"};
 `;
 
-const LoginBtn = styled(SocialLoginBtn)`
+export const LoginBtn = styled(SocialLoginBtn)`
     width:207.2px;
     height:14.981px;
     padding:10.4px;
@@ -60,15 +60,15 @@ const LoginBtn = styled(SocialLoginBtn)`
     background-color: var(--viva-blue-300);
 `;
 
-const SocialBtn = ({ name, href, bgcolor, color }) => {
+export const SocialBtn = ({ name, href, bgcolor, color }) => {
     return (
         <SocialLoginBtn bgcolor={bgcolor} color={color}>
-            <img src={href} alt="아이콘 이미지" width="15px" margin-right="3px"></img>
+            <img src={href} alt="아이콘 이미지" width="15px"></img>
             <span>Log in with {name}</span>
         </SocialLoginBtn>
     )
 }
-const LoginBox = styled.div`
+export const LoginBox = styled.div`
     height: 186.188px;
     width: 230px;
     /* border: 1px solid #dbdbdb; */
@@ -81,13 +81,14 @@ const LoginBox = styled.div`
     display: flex;
     flex-direction: column;
 `;
-const InputForm = styled.div`
+export const InputForm = styled.div`
     margin:6px 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 `
 
-const Label = styled.label`
+export const Label = styled.label`
     cursor: pointer;
     font-weight: 500;
     padding: 0 2px;
@@ -97,7 +98,7 @@ const Label = styled.label`
     justify-content: space-between;
     align-items: center;
 `;
-const LoginInput = styled.input`
+export const LoginInput = styled.input`
     width: 209.800px;
     height: 14.994px;
     /* border: 1px solid hsl(210, 8%, 100%); */
@@ -105,7 +106,7 @@ const LoginInput = styled.input`
     border-radius: 3px;
     padding: 7.8px 9.1px;
 `;
-const SLink = styled.a`
+export const SLink = styled.a`
     color:var(--viva-blue-400);
     cursor: pointer;
     text-decoration: none;
@@ -113,7 +114,7 @@ const SLink = styled.a`
     font-weight: 400;
 `;
 
-const LinkBox = styled.div`
+export const LinkBox = styled.div`
     padding:16px;
     margin-bottom: 24px;
     display: flex;
@@ -121,14 +122,14 @@ const LinkBox = styled.div`
     align-items: center;
 `;
 
-const Etc = styled.div`
-    font-size: 13px;
+export const Etc = styled.div`
+    font-size: 12px;
     letter-spacing: 0.5px;
     margin-bottom: 10px;
     color:var(--gray-500);
 `;
 
-const LoginForm = () => {
+export const LoginForm = () => {
     return (
         <>
             <GlobalStyle />

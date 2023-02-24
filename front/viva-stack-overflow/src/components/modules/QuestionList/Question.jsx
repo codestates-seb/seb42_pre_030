@@ -6,7 +6,6 @@ const Question = function () {
 
     const Qtitle = styled.h3`
         display: flex;
-        flex-direction: row-reverse;
         color: #0074cc;
         font-size: large;
         font-weight: 500;
@@ -19,14 +18,14 @@ const Question = function () {
     const Qmeta = styled.div`
         display: flex;
         justify-content: space-between;
-        justify-items: stretch;
         margin-top: 7px;
         width: 100%;
     `
 
+
+
     return (
         <>
-
             <div className='q-post-summary-stats'>
                 <div className='votes'>0 votes</div>
                 <div className='answers'>0 answers</div>
@@ -36,10 +35,13 @@ const Question = function () {
                 <Qtitle><a href="">제목입니다만</a></Qtitle>
                 <Qmeta>Jens 66.5k modified 16secs ago</Qmeta>
             </div>
-
-
         </>
     )
+
+
+
+
+
 }
 
 export default Question;

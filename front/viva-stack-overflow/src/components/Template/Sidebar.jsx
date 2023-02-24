@@ -22,7 +22,6 @@ const Sidebar = function () {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  background-color: rgb(255, 255, 255);
   color: rgb(81, 81, 81);
   display: flex;
   font-size: small;
