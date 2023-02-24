@@ -9,9 +9,6 @@ FE: 김태은, 조수빈
 
 BE: 은지일, 김대현, 김례화
 
-<<<<<<< HEAD
-v1.0.0, 2022.02.23
-
 ***
 == MemberController
 === 회원가입
@@ -204,4 +201,17 @@ include::{snippets}/get-answers/http-response.adoc[]
 
 .response-fields
 include::{snippets}/get-answers/response-fields.adoc[]
->>>>>>> dev/be
+
+== LogoutController
+=== 로그아웃
+.curl-request
+include::{snippets}/post-logout/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-logout/http-request.adoc[]
+
+.request-fields
+include::{snippets}/post-logout/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-logout/http-response.adoc[]

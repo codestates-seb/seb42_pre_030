@@ -6,6 +6,7 @@ import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,11 +21,13 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @AllArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @SneakyThrows
     @Override
@@ -44,6 +47,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
+
+        // refreshToken의 유효시간을 추출
+        Long expiration = jwtTokenizer.getRemainingExpiration(refreshToken);
+
+        // Redis에 RT:frank@gmail.com(key) / 23jijiofj2io3hi32hiongiodsninioda(value) 형태로 리프레시 토큰 저장하기
+        redisTemplate.opsForValue().set(String.format("RT:%s", member.getEmail()), refreshToken, expiration, TimeUnit.MILLISECONDS);
 
         response.setHeader("Authorization", String.format("Bearer %s", accessToken));
         response.setHeader("Refresh", refreshToken);
