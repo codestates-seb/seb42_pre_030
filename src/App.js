@@ -1,6 +1,5 @@
 import './App.css';
 
-
 import Footer from './components/template/Footer';
 import AnswerQuestionLoginPage from './Pages/AnswerQuestionLoginPage';
 import AnswerQuestionUnloginPage from './Pages/AnswerQuestionUnLoginPage';
@@ -17,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomeUnLoginPage />}></Route>
+        <Route path='/' element={<HomeUnLoginPage />} />
         <Route path='/home' element={<HomeLoginPage />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
