@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components"
 import React from "react";
 import "../../Assets/STYLES/variable.css";
-import * as LoginForm from '../Modules/LoginForm';
+import * as LoginForm from './LoginForm';
 import icon_cake from "../../Assets/IMGS/--icon--gray--cake.png";
 import icon_clock from "../../Assets/IMGS/--icon--gray--clock.png";
 import icon_calendar from "../../Assets/IMGS/--icon--gray--calendar.png";
@@ -9,13 +9,11 @@ import icon_calendar from "../../Assets/IMGS/--icon--gray--calendar.png";
 
 
 const Main = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 70vw;
-    height: 120vh;
+    height: 130vh;
     padding:24px;
     display: flex;
+    align-items: center;
     justify-content: center;
 
 `;
