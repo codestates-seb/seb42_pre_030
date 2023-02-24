@@ -22,6 +22,6 @@ logging:
         orm:
           jpa: DEBUG
 jwt:
-  key: ${JWT_SECRET_KEY}
+  key: jimmy1234123412341234123412341234
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8b2e8765-3ca9-4a80-a589-46f194ae6507" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back/viva-stack-overflow/src/test/java/com/vivarepublica/vivastackoverflow/slice/question/QuestionControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/viva-stack-overflow/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/back/viva-stack-overflow/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/dto/QuestionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/dto/QuestionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/entity/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/viva-stack-overflow/src/main/java/com/vivarepublica/vivastackoverflow/domain/question/entity/Tag.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2M5VGaCMMcIynU6ewr7THuiUuVk" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/hwarye/projects/seb42_pre_030"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b2e8765-3ca9-4a80-a589-46f194ae6507" name="Changes" comment="" />
+      <created>1677057336670</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677057336670</updated>
+      <workItem from="1677057337826" duration="20000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
