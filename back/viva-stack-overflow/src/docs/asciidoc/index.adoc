@@ -102,9 +102,6 @@ include::{snippets}/getOne-question/http-request.adoc[]
 .path-parameters
 include::{snippets}/getOne-question/path-parameters.adoc[]
 
-.request-fields
-include::{snippets}/getOne-question/request-fields.adoc[]
-
 .http-response
 include::{snippets}/getOne-question/http-response.adoc[]
 
