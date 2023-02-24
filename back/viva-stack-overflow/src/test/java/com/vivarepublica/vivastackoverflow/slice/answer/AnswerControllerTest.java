@@ -4,13 +4,7 @@ import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import com.vivarepublica.vivastackoverflow.domain.answer.controller.AnswerController;
 import com.vivarepublica.vivastackoverflow.domain.answer.dto.AnswerDto;
-import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
-import com.vivarepublica.vivastackoverflow.domain.answer.mapper.AnswerMapper;
-import com.vivarepublica.vivastackoverflow.domain.answer.repository.AnswerRepository;
-import com.vivarepublica.vivastackoverflow.domain.answer.service.AnswerService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,12 +24,11 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.util.List;
+
 import static com.vivarepublica.vivastackoverflow.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.vivarepublica.vivastackoverflow.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.List;
-
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;

@@ -1,10 +1,10 @@
-package com.vivarepublica.vivastackoverflow.domain.answer.response;
+package com.vivarepublica.vivastackoverflow.domain.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class PageInfo {
     private int page;
     private int size;
