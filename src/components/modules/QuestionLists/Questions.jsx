@@ -1,4 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
+import axios from 'axios';
+import { useEffect } from "react";
 
 
 const Questions = function () {
@@ -22,6 +24,25 @@ const Questions = function () {
         width: 100%;
     `
 
+    const config = {
+        headers: {
+            "content-type": "application/json",
+        },
+    };
+
+    useEffect(() => {
+
+        const handleData = async () => {
+            try {
+                const response = await axios.get('https://3c2b-39-121-143-132.jp.ngrok.io/questions/1', config)
+                const { data } = response
+                console.log(data);
+            } catch (error) {
+                console.log(error)
+            }
+            handleData()
+        }
+    }, [])
 
 
     return (
@@ -32,7 +53,7 @@ const Questions = function () {
                 <div className='views'>0 views</div>
             </div>
             <div className='q-post-summary-content'>
-                <Qtitle><a href="">제목입니다만</a></Qtitle>
+                <Qtitle><a href="" >제목입니다만</a></Qtitle>
                 <Qmeta>Jens 66.5k modified 16secs ago</Qmeta>
             </div>
         </>
