@@ -153,11 +153,11 @@ public class AnswerControllerTest {
 
         Page<Answer> pageAnswers = new PageImpl<>(answers, PageRequest.of(0, 10),answers.size());
 
-        List<AnswerDto.Response> responseAnswerList = List.of(new AnswerDto.Response(1L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(1L, "test1@gmai5.com", "testUser1")),
-                new AnswerDto.Response(2L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12",  new AnswerDto.Response.AnswerMember(2L, "test2@gmai5.com", "testUser2")),
-                new AnswerDto.Response(3L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(3L, "test3@gmai5.com", "testUser3")),
-                new AnswerDto.Response(4L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(4L, "test4@gmai5.com", "testUser4")),
-                new AnswerDto.Response(5L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", new AnswerDto.Response.AnswerMember(5L, "test5@gmai5.com", "testUser5")));
+        List<AnswerDto.Response> responseAnswerList = List.of(new AnswerDto.Response(1L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", "2023-02-25 12:12:12", new AnswerDto.Response.AnswerMember(1L, "test1@gmai5.com", "testUser1")),
+                new AnswerDto.Response(2L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", "2023-02-25 12:12:12",  new AnswerDto.Response.AnswerMember(2L, "test2@gmai5.com", "testUser2")),
+                new AnswerDto.Response(3L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", "2023-02-25 12:12:12", new AnswerDto.Response.AnswerMember(3L, "test3@gmai5.com", "testUser3")),
+                new AnswerDto.Response(4L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", "2023-02-25 12:12:12", new AnswerDto.Response.AnswerMember(4L, "test4@gmai5.com", "testUser4")),
+                new AnswerDto.Response(5L, "Answer Get 태스트 입니다", "2022-10-10 12:12:12", "2023-02-25 12:12:12", new AnswerDto.Response.AnswerMember(5L, "test5@gmai5.com", "testUser5")));
 
         given(answerService.findAnswers(Mockito.anyLong(), Mockito.anyInt(), Mockito.anyInt())).willReturn(pageAnswers);
         given(answerMapper.answerToAnswerResponseDtos(Mockito.anyList())).willReturn(responseAnswerList);
@@ -194,6 +194,7 @@ public class AnswerControllerTest {
                                 fieldWithPath("data[].answerId").type(JsonFieldType.NUMBER).description("답변 식별자 ID"),
                                 fieldWithPath("data[].content").type(JsonFieldType.STRING).description("답변 내용"),
                                 fieldWithPath("data[].createdAt").type(JsonFieldType.STRING).description("답변 작성일"),
+                                fieldWithPath("data[].modifiedAt").type(JsonFieldType.STRING).description("답변 수정일"),
                                 fieldWithPath("data[].answerMember").type(JsonFieldType.OBJECT).description("답변 작성자 데이터"),
                                 fieldWithPath("data[].answerMember.memberId").type(JsonFieldType.NUMBER).description("회원 식별자 ID"),
                                 fieldWithPath("data[].answerMember.email").type(JsonFieldType.STRING).description("이메일"),

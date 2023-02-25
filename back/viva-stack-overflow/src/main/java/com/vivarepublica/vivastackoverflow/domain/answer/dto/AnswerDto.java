@@ -29,6 +29,7 @@ public class AnswerDto {
         private Long answerId;
         private String content;
         private String createdAt;
+        private String modifiedAt;
         private AnswerMember answerMember;
 
         @AllArgsConstructor

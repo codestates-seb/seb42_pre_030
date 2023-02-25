@@ -32,6 +32,7 @@ public class Answer extends Auditable {
     private String content;
 
     private String prettyCreatedAt;
+    private String prettyModifiedAt;
 
     // Todo: 첨부파일 Advanced
 
@@ -48,12 +49,20 @@ public class Answer extends Auditable {
         }
     }
 
-    public void setPrettyCreatedAt() { // LocalDateTime String 이쁘게 format
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.prettyCreatedAt = getCreatedAt().format(formatter);
+    public void setPrettyCreatedAt() { // 작성일 LocalDateTime 이쁘게 format (2023-02-25 11:28:30)
+        this.prettyCreatedAt = dataTimeFormat(getCreatedAt()) ;
+    }
+
+    public void setPrettyModifiedAt() { // 수정일 LocalDateTime 이쁘게 format (2023-02-25 11:28:30)
+        this.prettyModifiedAt = dataTimeFormat(getModifiedAt()) ;
     }
 
     public Answer(String content) { // Slice Test에서 Stub 데이터를 생성하기 위한 생성자
         this.content = content;
+    }
+
+    private String dataTimeFormat(LocalDateTime localDateTime) { // LocalDateTime String 이쁘게 format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return localDateTime.format(formatter);
     }
 }

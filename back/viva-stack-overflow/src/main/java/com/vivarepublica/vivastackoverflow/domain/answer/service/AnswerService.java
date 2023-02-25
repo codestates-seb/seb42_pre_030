@@ -40,6 +40,7 @@ public class AnswerService {
         List<Answer> answers = answerRepository.findByQuestion_QuestionId(questionId); // 특정 질문ID의 답변 데이터 가져오기
         for (Answer answer: answers) {  // LocalDateTime 데이터를 깔끔하게 Response하기 위해 format 적용
             answer.setPrettyCreatedAt();
+            answer.setPrettyModifiedAt();
         }
 
         return new PageImpl<>(answers, PageRequest.of(page, size, Sort.by("answerId")),answers.size()); // Todo: 답변 목록 정렬을 좋아요 순으로 하기로 했으니 일단 보류, 現 오름차순

@@ -27,6 +27,7 @@ public interface AnswerMapper {
     }
 
     @Mapping(source = "prettyCreatedAt", target = "createdAt")
+    @Mapping(source = "prettyModifiedAt", target = "modifiedAt")
     @Mapping(source = "member.memberId", target = "answerMember.memberId")
     @Mapping(source = "member.email", target = "answerMember.email")
     @Mapping(source = "member.nickname", target = "answerMember.nickname")

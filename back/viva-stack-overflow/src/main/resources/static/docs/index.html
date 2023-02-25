@@ -1441,13 +1441,14 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 1346
+Content-Length: 1561
 
 {
   "data" : [ {
     "answerId" : 1,
     "content" : "Answer Get 태스트 입니다",
     "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
     "answerMember" : {
       "memberId" : 1,
       "email" : "test1@gmai5.com",
@@ -1457,6 +1458,7 @@ Content-Length: 1346
     "answerId" : 2,
     "content" : "Answer Get 태스트 입니다",
     "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
     "answerMember" : {
       "memberId" : 2,
       "email" : "test2@gmai5.com",
@@ -1466,6 +1468,7 @@ Content-Length: 1346
     "answerId" : 3,
     "content" : "Answer Get 태스트 입니다",
     "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
     "answerMember" : {
       "memberId" : 3,
       "email" : "test3@gmai5.com",
@@ -1475,6 +1478,7 @@ Content-Length: 1346
     "answerId" : 4,
     "content" : "Answer Get 태스트 입니다",
     "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
     "answerMember" : {
       "memberId" : 4,
       "email" : "test4@gmai5.com",
@@ -1484,6 +1488,7 @@ Content-Length: 1346
     "answerId" : 5,
     "content" : "Answer Get 태스트 입니다",
     "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
     "answerMember" : {
       "memberId" : 5,
       "email" : "test5@gmai5.com",
@@ -1533,6 +1538,11 @@ Content-Length: 1346
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].createdAt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">답변 작성일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변 수정일</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].answerMember</code></p></td>
@@ -1649,7 +1659,7 @@ Host: localhost:8080
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-02-24 12:41:56 +0900
+Last updated 2023-02-25 02:19:22 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
