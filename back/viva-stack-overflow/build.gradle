@@ -67,4 +67,5 @@ bootJar {
 	from ("${asciidoctor.outputDir}") {
 		into 'static/docs'
 	}
+
 }

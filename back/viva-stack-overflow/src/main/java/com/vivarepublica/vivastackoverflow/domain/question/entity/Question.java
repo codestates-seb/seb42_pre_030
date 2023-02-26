@@ -1,17 +1,21 @@
 package com.vivarepublica.vivastackoverflow.domain.question.entity;
 
 import com.vivarepublica.vivastackoverflow.audit.Auditable;
+import com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.sql.Blob;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "question")
 public class Question extends Auditable {
 
        @Id
@@ -27,15 +31,33 @@ public class Question extends Auditable {
        @Column(nullable = false)
        private int views;
 
-       @Column
-       private Blob files;
+//       @Column(nullable = true)
+//       private Blob files;
 
-       //db join
-       //@OneToMany(mappedBy = "question")
-       //private List<String> tag;
+       //tag join
+       @ToString.Exclude    //무한참조 방지
+       @ManyToMany
+       @JoinTable(name = "question_tag", joinColumns = @JoinColumn(name ="question_id"),
+               inverseJoinColumns = @JoinColumn(name = "tag_id"))
+       private Set<Tag> tags = new LinkedHashSet<>();
 
-       //db join
+       public void addTag(Tag tag) {
+              this.tags.add(tag);
+       }
+
+       //member join
+//       @ManyToOne
+//       @JoinColumn(name = "member_id")
+//       private Member member;
+//
+//       public void addMember(Member member) {
+//              this.member = member;
+//       }
+
+
+       //like join
        //@OneToMany(mappedBy = "question")
-       private int like;
+       //임시방편
+//       private int likeCount;
 
 }

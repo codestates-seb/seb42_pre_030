@@ -1,9 +1,11 @@
 package com.vivarepublica.vivastackoverflow.domain.question.dto;
 
+import com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 public class QuestionDto {
@@ -13,13 +15,14 @@ public class QuestionDto {
     @AllArgsConstructor
     public static class PostDto {
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String title;
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String content;
 
-        private List<String> tag;
+        private List<Tag> tag;
 
-        //private Blob files;
 
     }
 
@@ -30,13 +33,13 @@ public class QuestionDto {
 
         private Long questionId;
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String title;
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String content;
 
-        //private Blob files;
-
-        private List<String> tag;
+        private List<Tag> tag;
 
     }
 
@@ -55,7 +58,7 @@ public class QuestionDto {
         //private Blob files;
 
         //tag 이름만 보내면 되니까 List<String> 처리
-        private List<String> tag;
+        private List<Tag> tag;
 
         //like 갯수만 필요하므로 int 처리
         private int like;
