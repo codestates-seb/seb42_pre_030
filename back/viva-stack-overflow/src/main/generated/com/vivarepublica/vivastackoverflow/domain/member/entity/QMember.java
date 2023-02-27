@@ -20,9 +20,19 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
+    public final com.vivarepublica.vivastackoverflow.audit.QAuditable _super = new com.vivarepublica.vivastackoverflow.audit.QAuditable(this);
+
+    public final ListPath<com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer, com.vivarepublica.vivastackoverflow.domain.answer.entity.QAnswer> answers = this.<com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer, com.vivarepublica.vivastackoverflow.domain.answer.entity.QAnswer>createList("answers", com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer.class, com.vivarepublica.vivastackoverflow.domain.answer.entity.QAnswer.class, PathInits.DIRECT2);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
+
     public final StringPath email = createString("email");
 
     public final NumberPath<Long> memberId = createNumber("memberId", Long.class);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
 
     public final StringPath nickname = createString("nickname");
 

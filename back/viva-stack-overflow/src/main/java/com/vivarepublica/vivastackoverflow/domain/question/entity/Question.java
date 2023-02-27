@@ -1,6 +1,7 @@
 package com.vivarepublica.vivastackoverflow.domain.question.entity;
 
 import com.vivarepublica.vivastackoverflow.audit.Auditable;
+import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
 import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag;
 import lombok.Getter;
@@ -9,7 +10,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.FetchType.LAZY;
@@ -37,8 +40,8 @@ public class Question extends Auditable {
        @Column(nullable = false)
        private int likeCount;
 
-//       @Column(nullable = true)
-//       private Blob files;
+       @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) // Todo: Question을 참조중인 Answer의 영속성 전이(Cascade)위해 양방향 매핑 적용
+       private List<Answer> answers = new ArrayList<>();
 
        //tag join
        @ToString.Exclude    //무한참조 방지

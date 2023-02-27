@@ -24,6 +24,8 @@ public class QQuestion extends EntityPathBase<Question> {
 
     public final com.vivarepublica.vivastackoverflow.audit.QAuditable _super = new com.vivarepublica.vivastackoverflow.audit.QAuditable(this);
 
+    public final ListPath<com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer, com.vivarepublica.vivastackoverflow.domain.answer.entity.QAnswer> answers = this.<com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer, com.vivarepublica.vivastackoverflow.domain.answer.entity.QAnswer>createList("answers", com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer.class, com.vivarepublica.vivastackoverflow.domain.answer.entity.QAnswer.class, PathInits.DIRECT2);
+
     public final StringPath content = createString("content");
 
     //inherited
