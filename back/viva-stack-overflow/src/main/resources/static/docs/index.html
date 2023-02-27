@@ -448,9 +448,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_membercontroller">1. MemberController</a>
 <ul class="sectlevel2">
 <li><a href="#_회원가입">1.1. 회원가입</a></li>
-<li><a href="#_회원정보_수정">1.2. 회원정보 수정</a></li>
-<li><a href="#_회원정보_조회">1.3. 회원정보 조회</a></li>
-<li><a href="#_회원탈퇴">1.4. 회원탈퇴</a></li>
+<li><a href="#_회원정보_조회">1.2. 회원정보 조회</a></li>
+<li><a href="#_회원탈퇴">1.3. 회원탈퇴</a></li>
 </ul>
 </li>
 <li><a href="#_questioncontroller">2. QuestionController</a>
@@ -466,8 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_answercontroller">3. AnswerController</a>
 <ul class="sectlevel2">
 <li><a href="#_답변_등록">3.1. 답변 등록</a></li>
-<li><a href="#_특정_답변_조회">3.2. 특정 답변 조회</a></li>
-<li><a href="#_답변_목록_조회">3.3. 답변 목록 조회</a></li>
+<li><a href="#_답변_목록_조회">3.2. 답변 목록 조회</a></li>
 </ul>
 </li>
 <li><a href="#_logoutcontroller">4. LogoutController</a>
@@ -584,124 +582,7 @@ Location: /members/1</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_회원정보_수정">1.2. 회원정보 수정</h3>
-<div class="listingblock">
-<div class="title">curl-request</div>
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/members/1' -i -X PATCH \
-    -H 'Content-Type: application/json' \
-    -H 'Accept: application/json' \
-    -d '{
-  "memberId" : 1,
-  "nickname" : "kimWexler"
-}'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">http-request</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /members/1 HTTP/1.1
-Content-Type: application/json
-Accept: application/json
-Content-Length: 51
-Host: localhost:8080
-
-{
-  "memberId" : 1,
-  "nickname" : "kimWexler"
-}</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. /members/{member-id}</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>member-id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 회원의 아이디</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. request-fields</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nickname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">수정하고 싶은 별명</p></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">http-response</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 81
-
-{
-  "memberId" : 1,
-  "email" : "kim@gmail.com",
-  "nickname" : "kimWexler"
-}</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. response-fields</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberId</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">회원 아이디</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nickname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">별명</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_회원정보_조회">1.3. 회원정보 조회</h3>
+<h3 id="_회원정보_조회">1.2. 회원정보 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -718,7 +599,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. /members/{member-id}</caption>
+<caption class="title">Table 3. /members/{member-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -751,7 +632,7 @@ Content-Length: 81
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. response-fields</caption>
+<caption class="title">Table 4. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -784,7 +665,7 @@ Content-Length: 81
 </table>
 </div>
 <div class="sect2">
-<h3 id="_회원탈퇴">1.4. 회원탈퇴</h3>
+<h3 id="_회원탈퇴">1.3. 회원탈퇴</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -799,7 +680,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. /members/{member-id}</caption>
+<caption class="title">Table 5. /members/{member-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -861,7 +742,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. request-fields</caption>
+<caption class="title">Table 6. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -900,7 +781,7 @@ Location: /questions/1</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. response-headers</caption>
+<caption class="title">Table 7. response-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -953,7 +834,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. /questions/{question-id}</caption>
+<caption class="title">Table 8. /questions/{question-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -972,7 +853,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 12. request-fields</caption>
+<caption class="title">Table 9. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1020,7 +901,7 @@ Content-Length: 128
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 13. response-fields</caption>
+<caption class="title">Table 10. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1080,7 +961,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. /questions/{question-id}</caption>
+<caption class="title">Table 11. /questions/{question-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1115,7 +996,7 @@ Content-Length: 124
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. response-fields</caption>
+<caption class="title">Table 12. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1163,19 +1044,19 @@ Content-Length: 124
 <div class="title">curl-request</div>
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/questions?page=1&amp;size=10' -i -X GET \
-    -H 'Accept: application/json'</code></pre>
+    -H 'Accept: application/json;charset=UTF-8'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">GET /questions?page=1&amp;size=10 HTTP/1.1
-Accept: application/json
+Accept: application/json;charset=UTF-8
 Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. request-parameters</caption>
+<caption class="title">Table 13. request-parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1201,7 +1082,7 @@ Host: localhost:8080</code></pre>
 <div class="title">http-response</div>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Content-Length: 553
 
 {
@@ -1234,7 +1115,7 @@ Content-Length: 553
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. response-fields</caption>
+<caption class="title">Table 14. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1354,7 +1235,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. /questions/{question-id}</caption>
+<caption class="title">Table 15. /questions/{question-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1415,7 +1296,9 @@ Host: localhost:8080</code></pre>
     -H 'Content-Type: application/json' \
     -H 'Accept: application/json' \
     -d '{
-  "content" : "질문 받아라!!"
+  "questionId" : 1,
+  "memberId" : 1,
+  "content" : "Answer Post 테스트 입니다."
 }'</code></pre>
 </div>
 </div>
@@ -1425,16 +1308,18 @@ Host: localhost:8080</code></pre>
 <pre class="prettyprint highlight nowrap"><code data-lang="http">POST /answers HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 40
+Content-Length: 94
 Host: localhost:8080
 
 {
-  "content" : "질문 받아라!!"
+  "questionId" : 1,
+  "memberId" : 1,
+  "content" : "Answer Post 테스트 입니다."
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 19. request-fields</caption>
+<caption class="title">Table 16. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1448,6 +1333,16 @@ Host: localhost:8080
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>questionId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 식별 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별 ID</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
@@ -1463,7 +1358,7 @@ Location: /answers/1</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 20. response-headers</caption>
+<caption class="title">Table 17. response-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1483,24 +1378,24 @@ Location: /answers/1</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_특정_답변_조회">3.2. 특정 답변 조회</h3>
+<h3 id="_답변_목록_조회">3.2. 답변 목록 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/answers/1' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/answers/1?page=1&amp;size=10' -i -X GET \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /answers/1 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /answers/1?page=1&amp;size=10 HTTP/1.1
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. /answers/{answer-id}</caption>
+<caption class="title">Table 18. /answers/{question-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1513,71 +1408,13 @@ Host: localhost:8080</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>answer-id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">답변 식별자 ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>question-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 식별자 ID</p></td>
 </tr>
 </tbody>
 </table>
-<div class="listingblock">
-<div class="title">http-response</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 77
-
-{
-  "answerId" : 1,
-  "content" : "세계에서 제일 멋있는 답변"
-}</code></pre>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. response-fields</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>answerId</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">답변 식별자 ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">답변 내용</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_답변_목록_조회">3.3. 답변 목록 조회</h3>
-<div class="listingblock">
-<div class="title">curl-request</div>
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/answers?page=1&amp;size=10' -i -X GET \
-    -H 'Accept: application/json'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">http-request</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /answers?page=1&amp;size=10 HTTP/1.1
-Accept: application/json
-Host: localhost:8080</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. request-parameters</caption>
+<caption class="title">Table 19. request-parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1591,11 +1428,11 @@ Host: localhost:8080</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Page 번호</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Page 번호(0부터 시작하는 페이지 인덱스)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Size 크기</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Size 크기(반환할 페이지의 크기)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1604,30 +1441,71 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 382
+Content-Length: 1561
 
 {
   "data" : [ {
     "answerId" : 1,
-    "content" : "세계에서 제일 멋있는 답변"
+    "content" : "Answer Get 태스트 입니다",
+    "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
+    "answerMember" : {
+      "memberId" : 1,
+      "email" : "test1@gmai5.com",
+      "nickname" : "testUser1"
+    }
   }, {
     "answerId" : 2,
-    "content" : "세계에서 제일 예쁜 답변"
+    "content" : "Answer Get 태스트 입니다",
+    "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
+    "answerMember" : {
+      "memberId" : 2,
+      "email" : "test2@gmai5.com",
+      "nickname" : "testUser2"
+    }
   }, {
     "answerId" : 3,
-    "content" : "세계에서 제일 짜증나는 답변"
+    "content" : "Answer Get 태스트 입니다",
+    "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
+    "answerMember" : {
+      "memberId" : 3,
+      "email" : "test3@gmai5.com",
+      "nickname" : "testUser3"
+    }
+  }, {
+    "answerId" : 4,
+    "content" : "Answer Get 태스트 입니다",
+    "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
+    "answerMember" : {
+      "memberId" : 4,
+      "email" : "test4@gmai5.com",
+      "nickname" : "testUser4"
+    }
+  }, {
+    "answerId" : 5,
+    "content" : "Answer Get 태스트 입니다",
+    "createdAt" : "2022-10-10 12:12:12",
+    "modifiedAt" : "2023-02-25 12:12:12",
+    "answerMember" : {
+      "memberId" : 5,
+      "email" : "test5@gmai5.com",
+      "nickname" : "testUser5"
+    }
   } ],
   "pageInfo" : {
-    "page" : 2,
+    "page" : 1,
     "size" : 10,
-    "totalElements" : 13,
-    "totalPages" : 2
+    "totalElements" : 6,
+    "totalPages" : 1
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. response-fields</caption>
+<caption class="title">Table 20. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1655,6 +1533,36 @@ Content-Length: 382
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].content</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">답변 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변 작성일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변 수정일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].answerMember</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변 작성자 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].answerMember.memberId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].answerMember.email</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].answerMember.nickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">별명</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo</code></p></td>
@@ -1717,7 +1625,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. request-fields</caption>
+<caption class="title">Table 21. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1751,7 +1659,7 @@ Host: localhost:8080
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-02-24 14:22:52 +0900
+Last updated 2023-02-25 02:19:22 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
