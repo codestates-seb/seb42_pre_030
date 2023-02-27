@@ -27,32 +27,32 @@ public class QuestionController {
 
     //Post
     @PostMapping
-    public ResponseEntity postQuestion(@RequestBody QuestionDto.PostDto questionPostDto) {
+    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post questionPost) {
 
-        Question question = questionMapper.questionPostDtoToQuestion(questionPostDto);
+        Question question = questionMapper.questionPostDtoToQuestion(questionPost);
         Question createdQuestion = questionService.createQuestion(question);
-        QuestionDto.ResponseDto questionResponseDto = questionMapper.questionToQuestionResponseDto(createdQuestion);
+        QuestionDto.Response questionResponse = questionMapper.questionToQuestionResponseDto(createdQuestion);
 
-        return new ResponseEntity<>(questionResponseDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(questionResponse, HttpStatus.CREATED);
     }
 
     //Patch
     @PatchMapping("/{question-id}")
     public ResponseEntity PatchQuestion(@PathVariable("question-id") @Positive Long questionId,
-                                        @RequestBody QuestionDto.PatchDto patchDto) {
+                                        @RequestBody QuestionDto.Patch patch) {
 
 //        List<String> questionTag = new ArrayList<>();
 //        questionTag.add("태그1");
 //        questionTag.add("태그2");
 //
-//        QuestionDto.ResponseDto patch = new QuestionDto.ResponseDto(questionId, "제목22", "내용22", questionTag, 3);
+//        QuestionDto.Response patch = new QuestionDto.Response(questionId, "제목22", "내용22", questionTag, 3);
 
-        Question question = questionMapper.questionPatchDtoToQuestion(patchDto);
+        Question question = questionMapper.questionPatchDtoToQuestion(patch);
         //question.setQuestionId(questionId);
         Question patchQuestion = questionService.patch(question);
-        QuestionDto.ResponseDto responseDto = questionMapper.questionToQuestionResponseDto(patchQuestion);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponseDto(patchQuestion);
 
-        return ResponseEntity.ok(responseDto);
+        return ResponseEntity.ok(response);
     }
 
     //Get One
@@ -60,11 +60,11 @@ public class QuestionController {
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive Long questionId) {
 
         Question getOne = questionService.getOne(questionId);
-        QuestionDto.ResponseDto responseDto = questionMapper.questionToQuestionResponseDto(getOne);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponseDto(getOne);
 
-//(stub)QuestionDto.ResponseDto getOne = new QuestionDto.ResponseDto(questionId, "제목", "내용", List.of(new String[]{"태그1", "태그2"}), 3);
+//(stub)QuestionDto.Response getOne = new QuestionDto.Response(questionId, "제목", "내용", List.of(new String[]{"태그1", "태그2"}), 3);
 
-        return ResponseEntity.ok(responseDto);
+        return ResponseEntity.ok(response);
 
     }
 
@@ -72,15 +72,15 @@ public class QuestionController {
     @GetMapping
     public ResponseEntity getAll(@RequestParam int page, @RequestParam int size) {
 
-//(stub) List<QuestionDto.ResponseDto> getAll = List.of(new QuestionDto.ResponseDto(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1),
-//                                                      new QuestionDto.ResponseDto(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
-//                                                      new QuestionDto.ResponseDto(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3));
+//(stub) List<QuestionDto.Response> getAll = List.of(new QuestionDto.Response(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1),
+//                                                      new QuestionDto.Response(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
+//                                                      new QuestionDto.Response(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3));
 
         List<Question> questions = questionService.getAll();
-        List<QuestionDto.ResponseDto> responseDtos = questionMapper.questionToQuestionResponseDtos(questions);
+        List<QuestionDto.Response> responses = questionMapper.questionToQuestionResponseDtos(questions);
 
-        Page<QuestionDto.ResponseDto> pageQuestions = new PageImpl<>(responseDtos, PageRequest.of(page,size),3);
-        List<QuestionDto.ResponseDto> responseList = pageQuestions.getContent();
+        Page<QuestionDto.Response> pageQuestions = new PageImpl<>(responses, PageRequest.of(page,size),3);
+        List<QuestionDto.Response> responseList = pageQuestions.getContent();
 
         return new ResponseEntity(new MultiResponseDto<>(responseList, pageQuestions), HttpStatus.OK);
 

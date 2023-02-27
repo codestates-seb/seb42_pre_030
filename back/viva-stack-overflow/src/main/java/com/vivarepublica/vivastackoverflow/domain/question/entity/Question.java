@@ -1,6 +1,7 @@
 package com.vivarepublica.vivastackoverflow.domain.question.entity;
 
 import com.vivarepublica.vivastackoverflow.audit.Auditable;
+import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,8 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -30,6 +33,9 @@ public class Question extends Auditable {
 
        @Column(nullable = false)
        private int views;
+       
+       @Column(nullable = false)
+       private int likeCount;
 
 //       @Column(nullable = true)
 //       private Blob files;
@@ -46,18 +52,13 @@ public class Question extends Auditable {
        }
 
        //member join
-//       @ManyToOne
-//       @JoinColumn(name = "member_id")
-//       private Member member;
-//
-//       public void addMember(Member member) {
-//              this.member = member;
-//       }
+       @ManyToOne(fetch = LAZY)
+       @JoinColumn(name = "member_id")
+       private Member member;
 
+       public void addMember(Member member) {
+              this.member = member;
+       }
 
-       //like join
-       //@OneToMany(mappedBy = "question")
-       //임시방편
-//       private int likeCount;
 
 }

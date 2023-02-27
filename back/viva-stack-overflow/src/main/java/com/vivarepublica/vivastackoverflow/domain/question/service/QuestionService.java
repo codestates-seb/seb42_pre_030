@@ -60,12 +60,13 @@ public class QuestionService {
         questionRepository.deleteAll();
     }
 
+    //Id 기준 조회
     private Question verifyQuestionById(Long questionId) {
-        Optional<Question> getQuestion = questionRepository.findById(questionId);
-        if (getQuestion.isEmpty()) {
+        Optional<Question> OptionalQuestion = questionRepository.findById(questionId);
+        if (OptionalQuestion.isEmpty()) {
             throw new RuntimeException("존재하지 않는 질문입니다.");
         }
-        return getQuestion.get();
+        return OptionalQuestion.orElseThrow(() -> new RuntimeException("존재하지 않는 질문입니다."));
     }
 
 }
