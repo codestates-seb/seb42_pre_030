@@ -3,10 +3,12 @@ package com.vivarepublica.vivastackoverflow.domain.question.service;
 import com.vivarepublica.vivastackoverflow.domain.question.entity.Question;
 import com.vivarepublica.vivastackoverflow.domain.question.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +19,7 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     //질문 작성
-    public Question createQuestion(Question question) {
+    public Question create(Question question) {
 
         return questionRepository.save(question);
     }
@@ -45,8 +47,8 @@ public class QuestionService {
     }
 
     //전체 조회
-    public List<Question> getAll() {
-        return questionRepository.findAll();
+    public Page<Question> getAll(int page, int size) {
+        return questionRepository.findAll(PageRequest.of(page, size, Sort.by("questionId").descending()));
     }
 
     //단일 삭제
