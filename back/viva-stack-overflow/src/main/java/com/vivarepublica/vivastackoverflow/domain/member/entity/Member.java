@@ -1,5 +1,7 @@
 package com.vivarepublica.vivastackoverflow.domain.member.entity;
 
+import com.vivarepublica.vivastackoverflow.audit.Auditable;
+import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Member {
+public class Member extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
@@ -22,6 +24,8 @@ public class Member {
     private String password;
     @Column(nullable = false, unique = true)
     private String nickname;
+    @OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Answer> answers = new ArrayList<>();
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 }
