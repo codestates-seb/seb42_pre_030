@@ -40,8 +40,6 @@ public class QQuestion extends EntityPathBase<Question> {
 
     public final NumberPath<Long> questionId = createNumber("questionId", Long.class);
 
-    public final SetPath<com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag, com.vivarepublica.vivastackoverflow.domain.tag.entity.QTag> tags = this.<com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag, com.vivarepublica.vivastackoverflow.domain.tag.entity.QTag>createSet("tags", com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag.class, com.vivarepublica.vivastackoverflow.domain.tag.entity.QTag.class, PathInits.DIRECT2);
-
     public final StringPath title = createString("title");
 
     public final NumberPath<Integer> views = createNumber("views", Integer.class);

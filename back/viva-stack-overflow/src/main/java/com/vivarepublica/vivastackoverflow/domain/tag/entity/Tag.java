@@ -1,14 +1,10 @@
 package com.vivarepublica.vivastackoverflow.domain.tag.entity;
 
-import com.vivarepublica.vivastackoverflow.domain.question.entity.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -25,14 +21,16 @@ public class Tag {
     @Enumerated(EnumType.STRING)
     private HashTag tagName;
 
-    @ToString.Exclude    //무한참조 방지
-    @ManyToMany(mappedBy = "tags", cascade = CascadeType.ALL)
-    private Set<Question> questions = new LinkedHashSet<>();
+//    @ToString.Exclude    //무한참조 방지
+//    @ManyToMany(mappedBy = "tags", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+//    private Set<Question> questions = new LinkedHashSet<>();
+//
+//    public void addQuestion(Question question) {
+//        this.questions.add(question);
+//    }
 
-    public void addQuestion(Question question) {
-        this.questions.add(question);
+    public Tag(Long tagId, HashTag tagName) {
+        this.tagId = tagId;
+        this.tagName = tagName;
     }
-
-
-
 }
