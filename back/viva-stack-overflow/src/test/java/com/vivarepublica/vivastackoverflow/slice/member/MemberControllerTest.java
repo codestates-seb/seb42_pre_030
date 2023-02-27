@@ -98,6 +98,63 @@ public class MemberControllerTest {
     }
 
     @Test
+    void patchMemberTest() throws Exception {
+        // given
+        Long memberId = 1L;
+
+        MemberDto.Patch patchMemberDto =
+                new MemberDto.Patch(memberId, "kimWexler");
+        String patchContent = gson.toJson(patchMemberDto);
+
+        MemberDto.Response responseBody =
+                new MemberDto.Response(memberId, "kim@gmail.com", "kimWexler");
+
+        given(mapper.memberPatchDtoToMember(Mockito.any(MemberDto.Patch.class)))
+                .willReturn(new Member());
+
+        given(memberService.updateMember(Mockito.any(Member.class)))
+                .willReturn(new Member());
+
+        given(mapper.memberToMemberResponseDto(Mockito.any(Member.class)))
+                .willReturn(responseBody);
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        patch("/members/{member-id}", memberId)
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(patchContent)
+                );
+
+        // then
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("nickname").value(responseBody.getNickname()))
+                .andDo(document(
+                        "patch-member",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("member-id").description("수정할 회원의 아이디")
+                        ),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("수정할 회원의 아이디").ignored(),
+                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("수정하고 싶은 별명")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 아이디"),
+                                        fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명")
+                                )
+                        )
+                ));
+    }
+
+    @Test
     void getMemberTest() throws Exception {
         // given
         Long memberId = 1L;

@@ -27,6 +27,25 @@ include::{snippets}/post-member/http-response.adoc[]
 .response-headers
 include::{snippets}/post-member/response-headers.adoc[]
 
+=== 회원정보 수정
+.curl-request
+include::{snippets}/patch-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-member/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/patch-member/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/patch-member/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-member/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-member/response-fields.adoc[]
+
 === 회원정보 조회
 .curl-request
 include::{snippets}/get-member/curl-request.adoc[]
@@ -101,9 +120,6 @@ include::{snippets}/getOne-question/http-request.adoc[]
 
 .path-parameters
 include::{snippets}/getOne-question/path-parameters.adoc[]
-
-.request-fields
-include::{snippets}/getOne-question/request-fields.adoc[]
 
 .http-response
 include::{snippets}/getOne-question/http-response.adoc[]
