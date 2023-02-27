@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://viva-db.cui2lmu06yvs.ap-northeast-2.rds.amazonaws.com:13306/test
+    username: admin
+    password: viva1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
