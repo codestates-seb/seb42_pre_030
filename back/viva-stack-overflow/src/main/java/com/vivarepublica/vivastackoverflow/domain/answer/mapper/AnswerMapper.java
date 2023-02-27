@@ -26,6 +26,8 @@ public interface AnswerMapper {
         return answer;
     }
 
+    Answer answerPatchDtoToAnswer(AnswerDto.Patch answerPatchDto);
+
     @Mapping(source = "prettyCreatedAt", target = "createdAt")
     @Mapping(source = "prettyModifiedAt", target = "modifiedAt")
     @Mapping(source = "member.memberId", target = "answerMember.memberId")

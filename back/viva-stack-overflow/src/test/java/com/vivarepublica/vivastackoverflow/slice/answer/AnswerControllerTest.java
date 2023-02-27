@@ -35,10 +35,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -93,7 +93,7 @@ public class AnswerControllerTest {
                 requestFields(
                         fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별 ID"),
                         fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별 ID"),
-                        fieldWithPath("content").type(JsonFieldType.STRING).description("답변내용")
+                        fieldWithPath("content").type(JsonFieldType.STRING).description("답변 내용")
                 ),
                 responseHeaders(
                         headerWithName(HttpHeaders.LOCATION).description("Location header. 등록된 리소스의 URI")
@@ -101,38 +101,62 @@ public class AnswerControllerTest {
         ));
     }
 
-    // Todo: 특정 댓글 가져오기 Drop
-//    @Test
-//    public void getAnswerTest() throws Exception {
-//        // given
-//        AnswerDto.Response response = new AnswerDto.Response(1L, "세계에서 제일 멋있는 답변");
-//
-//        // 아직 사용하는 Bean이 없기 때문에 Mockito 필요없음
-//
-//        // when
-//        ResultActions getActions =
-//                mockMvc.perform(
-//                        get("/answers/{answer-id}", 1L)
-//                                .accept(MediaType.APPLICATION_JSON)
-//                );
-//
-//        // then
-//        getActions
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.answerId").value(response.getAnswerId()))
-//                .andExpect(jsonPath("$.content").value(response.getContent()))
-//                .andDo(document(
-//                        "get-answer",
-//                        getRequestPreProcessor(),
-//                        getResponsePreProcessor(),
-//                        pathParameters(
-//                            parameterWithName("answer-id").description("답변 식별자 ID")
-//                        ),
-//                        responseFields(
-//                                List.of(fieldWithPath("answerId").type(JsonFieldType.NUMBER).description("답변 식별자 ID"),
-//                                        fieldWithPath("content").type(JsonFieldType.STRING).description("답변 내용"))
-//                )));
-//    }
+    @Test
+    public void patchAnswerTest() throws Exception {
+        // given
+        AnswerDto.Patch patch = new AnswerDto.Patch(1L, "Answer Patch 테스트 입니다.");
+        String content = gson.toJson(patch);
+
+        given(answerMapper.answerPatchDtoToAnswer(Mockito.any(AnswerDto.Patch.class))).willReturn(new Answer());
+
+        given(answerService.updateAnswer(Mockito.any(Answer.class))).willReturn(new Answer());
+
+        given(answerService.updateAt(Mockito.any(Answer.class))).willReturn(new Answer());
+
+        AnswerDto.Response response = new AnswerDto.Response(1L, "Answer Patch 테스트 입니다.", "2022-10-10 12:12:12", "2023-02-25 12:12:12", new AnswerDto.Response.AnswerMember(1L, "test1@gmai5.com", "testUser1"));
+
+        given(answerMapper.answerToAnswerResponseDto(Mockito.any(Answer.class))).willReturn(response);
+
+
+        // when
+        ResultActions patchAction =
+                mockMvc.perform(
+                        patch("/answers/{answer-id}", 1L)
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(content)
+                );
+        // then
+        patchAction
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("content").value(response.getContent()))
+                .andDo(document(
+                        "patch-answer",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("answer-id").description("수정할 답변 식별자 ID")
+                        ),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("answerId").type(JsonFieldType.NUMBER).description("수정할 답변 식별자 ID").ignored(),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("수정할 답변 내용")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("answerId").type(JsonFieldType.NUMBER).description("답변 식별자 ID"),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("답변 내용"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("답변 작성일"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("답변 수정일"),
+                                        fieldWithPath("answerMember").type(JsonFieldType.OBJECT).description("답변 작성자 데이터"),
+                                        fieldWithPath("answerMember.memberId").type(JsonFieldType.NUMBER).description("회원 식별자 ID"),
+                                        fieldWithPath("answerMember.email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("answerMember.nickname").type(JsonFieldType.STRING).description("별명")
+                                )
+                        )
+                ));
+    }
 
     @Test
     public void getAnswersTest() throws Exception {
@@ -208,4 +232,28 @@ public class AnswerControllerTest {
                 )));
     }
 
+    @Test
+    public void deleteAnswerTest() throws Exception {
+        // given
+        doNothing().when(answerService).deleteAnswer(Mockito.anyLong());
+
+        // when
+        ResultActions deleteAction =
+                mockMvc.perform(
+                        delete("/answers/{answer-id}", 1L)
+                                .accept(MediaType.APPLICATION_JSON)
+                );
+
+        // then
+        deleteAction.andExpect(status().isNoContent())
+                .andDo(document(
+                        "delete-answer",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("answer-id").description("삭제할 답변 식별자 ID")
+                            )
+                        )
+                );
+    }
 }

@@ -26,35 +26,37 @@ import java.util.List;
 @Slf4j
 public class AnswerController {
     private final static String ANSWER_DEFAULT_URL = "/answers";
-    private final AnswerMapper mapper;
-    private final AnswerService service;
+    private final AnswerMapper answerMapper;
+    private final AnswerService answerService;
 
     @PostMapping
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerDto.Post requestBody) {
-        Answer createAnswer = service.createAnswer(mapper.answerPostDtoToAnswer(requestBody));
+        Answer createAnswer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(requestBody));
         URI location = UriCreator.createUri(ANSWER_DEFAULT_URL, createAnswer.getAnswerId());
 
         return ResponseEntity.created(location).build();
     }
 
-/*    @PatchMapping("/{answers-id}")
-    public ResponseEntity patchAnswer() {
+    @PatchMapping("/{answer-id}")
+    public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive Long answerId, @Valid @RequestBody AnswerDto.Patch requestBody) {
+        Answer answer = answerService.updateAnswer(answerMapper.answerPatchDtoToAnswer(requestBody.addAnswerId(answerId)));
+        answer = answerService.updateAt(answer); // 영속성 컨텍스트 변경감지로 UPDATE commit된 Entity의 ModifiedAt를 가져오는 동작(method)이다.
 
-        return ResponseEntity.ok(null);
-    }*/
+        return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(answer), HttpStatus.OK);
+    }
 
 
     @GetMapping("/{question-id}")
     public ResponseEntity getAnswers(@PathVariable("question-id") @Positive Long questionId, @Positive @RequestParam int page, @Positive @RequestParam int size) {
-        Page<Answer> pageAnswers = service.findAnswers(questionId,page-1, size);
+        Page<Answer> pageAnswers = answerService.findAnswers(questionId,page-1, size);
         List<Answer> responseList = pageAnswers.getContent();
 
-        return new ResponseEntity<>(new MultiResponseDto<>(mapper.answerToAnswerResponseDtos(responseList), pageAnswers), HttpStatus.OK);
+        return new ResponseEntity<>(new MultiResponseDto<>(answerMapper.answerToAnswerResponseDtos(responseList), pageAnswers), HttpStatus.OK);
     }
 
-/*    @DeleteMapping("/{answers-id}")
-    public ResponseEntity deleteAnswer() {
-
-        return ResponseEntity.noContent().build();
-    }*/
+    @DeleteMapping("/{answer-id}")
+    public ResponseEntity deleteAnswer(@PathVariable("answer-id") @Positive Long answerId) {
+        answerService.deleteAnswer(answerId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
