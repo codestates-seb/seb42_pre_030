@@ -45,6 +45,12 @@ const Questions = function () {
     }, [])
 
 
+    const Click = function () {
+        console.log('data')
+    }
+
+
+
     return (
         <>
             <div className='q-post-summary-stats'>
@@ -53,7 +59,7 @@ const Questions = function () {
                 <div className='views'>0 views</div>
             </div>
             <div className='q-post-summary-content'>
-                <Qtitle><a href="" >제목입니다만</a></Qtitle>
+                <Qtitle><a onClick={Click} href="" >제목입니다만</a></Qtitle>
                 <Qmeta>Jens 66.5k modified 16secs ago</Qmeta>
             </div>
         </>
