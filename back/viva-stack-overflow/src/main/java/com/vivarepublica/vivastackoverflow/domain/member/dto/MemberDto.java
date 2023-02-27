@@ -2,6 +2,7 @@ package com.vivarepublica.vivastackoverflow.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -21,6 +22,16 @@ public class MemberDto {
         @NotBlank(message = "별명은 필수 입력 사항입니다.")
         private String nickname;
     }
+
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    public static class Patch {
+        private Long memberId;
+        @NotBlank(message = "별명은 필수 입력 사항입니다.")
+        private String nickname;
+    }
+
     @AllArgsConstructor
     @Getter
     public static class Response {
