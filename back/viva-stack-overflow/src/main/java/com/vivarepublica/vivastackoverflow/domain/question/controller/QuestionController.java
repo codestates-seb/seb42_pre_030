@@ -38,7 +38,7 @@ public class QuestionController {
 
     //Patch
     @PatchMapping("/{question-id}")
-    public ResponseEntity PatchQuestion(@PathVariable("question-id") @Positive Long questionId,
+    public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive Long questionId,
                                         @RequestBody QuestionDto.Patch patch) {
 
         patch.setQuestionId(questionId);
