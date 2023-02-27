@@ -193,6 +193,9 @@ include::{snippets}/get-answers/curl-request.adoc[]
 .http-request
 include::{snippets}/get-answers/http-request.adoc[]
 
+.path-parameters
+include::{snippets}/get-answers/path-parameters.adoc[]
+
 .request-parameters
 include::{snippets}/get-answers/request-parameters.adoc[]
 
