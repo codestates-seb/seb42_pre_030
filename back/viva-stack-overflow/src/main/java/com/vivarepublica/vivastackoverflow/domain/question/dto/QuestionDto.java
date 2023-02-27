@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 public class QuestionDto {
@@ -11,30 +12,31 @@ public class QuestionDto {
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class PostDto {
+    public static class Post {
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String title;
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String content;
 
         private List<String> tag;
 
-        //private Blob files;
 
     }
 
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class PatchDto {
+    public static class Patch {
 
         private Long questionId;
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String title;
 
+        @NotBlank(message = "필수 기입 항목입니다.")
         private String content;
-
-        //private Blob files;
 
         private List<String> tag;
 
@@ -43,7 +45,7 @@ public class QuestionDto {
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class ResponseDto {
+    public static class Response {
 
         private Long questionId;
 
