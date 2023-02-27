@@ -57,7 +57,7 @@ public class QuestionControllerTest {
 
         //given -> 테스트용 requestbody 생성
 
-        QuestionDto.PostDto post = new QuestionDto.PostDto("제목", "내용", List.of(new String[]{"태그1", "태그2"}));
+        QuestionDto.Post post = new QuestionDto.Post("제목", "내용", List.of(new String[]{"태그1", "태그2"}));
         String content = gson.toJson(post);
 
         //when -> MockMvc 객체로 테스트 대상 controller 호출
@@ -103,7 +103,7 @@ public class QuestionControllerTest {
         questionTag.add("태그1");
         questionTag.add("태그2");
 
-        QuestionDto.PatchDto request = new QuestionDto.PatchDto(1L, "제목22", "내용22", questionTag);
+        QuestionDto.Patch request = new QuestionDto.Patch(1L, "제목22", "내용22", questionTag);
 
 //        String requestContent = gson.toJson(request);
 //        URI requestUri = UriComponentsBuilder.newInstance().path("/questions").build().toUri();
@@ -120,7 +120,7 @@ public class QuestionControllerTest {
 //        String location = postActions.andReturn().getResponse().getHeader("Location");
 //        questionId = Long.parseLong(location.substring(location.lastIndexOf("/") + 1));
 
-        QuestionDto.ResponseDto response = new QuestionDto.ResponseDto(1L, "제목22", "내용22", questionTag,  3);
+        QuestionDto.Response response = new QuestionDto.Response(1L, "제목22", "내용22", questionTag,  3);
         String patchContent = gson.toJson(request);
 
         //URI responseUri = UriComponentsBuilder.newInstance().path("/questions/{question-id}").buildAndExpand().toUri();
@@ -176,7 +176,7 @@ public class QuestionControllerTest {
         //given
         // -- post 이용한 테스트 데이터 생성 시작
 
-/*      QuestionDto.PostDto post = new QuestionDto.PostDto("제목", "내용", List.of(new String[]{"태그1", "태그2"}));
+/*      QuestionDto.Post post = new QuestionDto.Post("제목", "내용", List.of(new String[]{"태그1", "태그2"}));
         String postContent = gson.toJson(post);
 
         System.out.println("postContent = " + postContent);
@@ -196,8 +196,8 @@ public class QuestionControllerTest {
         questionTag.add("태그1");
         questionTag.add("태그2");
 
-        QuestionDto.ResponseDto response =
-                new QuestionDto.ResponseDto(questionId, "제목", "내용", questionTag, 3);
+        QuestionDto.Response response =
+                new QuestionDto.Response(questionId, "제목", "내용", questionTag, 3);
 
 
 /*      long questionId;
@@ -255,7 +255,7 @@ public class QuestionControllerTest {
     @Test
     public void getAllQuestionTest() throws Exception {
         //given
-//        QuestionDto.ResponseDto response1 = new QuestionDto.ResponseDto(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1);
+//        QuestionDto.Response response1 = new QuestionDto.Response(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1);
 //        String responseContent1 = gson.toJson(response1);
 //        URI requestUri = UriComponentsBuilder.newInstance().path("/questions").build().toUri();
 //
@@ -266,7 +266,7 @@ public class QuestionControllerTest {
 //                        .content(responseContent1)
 //        );
 //
-//        QuestionDto.ResponseDto response2 = new QuestionDto.ResponseDto(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2);
+//        QuestionDto.Response response2 = new QuestionDto.Response(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2);
 //        String responseContent2 = gson.toJson(response2);
 //
 //        mockMvc.perform(
@@ -276,7 +276,7 @@ public class QuestionControllerTest {
 //                        .content(responseContent2)
 //        );
 //
-//        QuestionDto.ResponseDto response3 = new QuestionDto.ResponseDto(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3);
+//        QuestionDto.Response response3 = new QuestionDto.Response(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3);
 //        String responseContent3 = gson.toJson(response3);
 //
 //        mockMvc.perform(
@@ -286,10 +286,10 @@ public class QuestionControllerTest {
 //                        .content(responseContent3)
 //        );
 
-//        List<QuestionDto.ResponseDto> responseList
-//                = List.of(new QuestionDto.ResponseDto(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1),
-//                new QuestionDto.ResponseDto(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
-//                new QuestionDto.ResponseDto(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3)
+//        List<QuestionDto.Response> responseList
+//                = List.of(new QuestionDto.Response(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1),
+//                new QuestionDto.Response(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
+//                new QuestionDto.Response(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3)
 //                );
 
         String page = "1";
@@ -298,7 +298,7 @@ public class QuestionControllerTest {
         queryParams.add("page", page);
         queryParams.add("size", size);
 
-//        Page<QuestionDto.ResponseDto> pageQuestions = new PageImpl<>(responseList, PageRequest.of(1,10),3);
+//        Page<QuestionDto.Response> pageQuestions = new PageImpl<>(responseList, PageRequest.of(1,10),3);
 
 
         //when
@@ -397,7 +397,7 @@ public class QuestionControllerTest {
     @Test
     public void  deleteAllQuestionTest() throws Exception {
         //given
-//        QuestionDto.PostDto post1 = new QuestionDto.PostDto("제목", "내용", List.of(new String[]{"태그1", "태그2"}));
+//        QuestionDto.Post post1 = new QuestionDto.Post("제목", "내용", List.of(new String[]{"태그1", "태그2"}));
 //        String postContent1 = gson.toJson(post1);
 //        URI postUri = UriComponentsBuilder.newInstance().path("/questions").build().toUri();
 //
@@ -408,7 +408,7 @@ public class QuestionControllerTest {
 //                        .content(postContent1)
 //        );
 //
-//        QuestionDto.PostDto post2 = new QuestionDto.PostDto("제목2", "내용2", List.of(new String[]{"태그12", "태그22"}));
+//        QuestionDto.Post post2 = new QuestionDto.Post("제목2", "내용2", List.of(new String[]{"태그12", "태그22"}));
 //        String postContent2 = gson.toJson(post2);
 //
 //        mockMvc.perform(
@@ -418,7 +418,7 @@ public class QuestionControllerTest {
 //                        .content(postContent2)
 //        );
 //
-//        QuestionDto.PostDto post3 = new QuestionDto.PostDto("제목3", "내용3", List.of(new String[]{"태그123", "태그223"}));
+//        QuestionDto.Post post3 = new QuestionDto.Post("제목3", "내용3", List.of(new String[]{"태그123", "태그223"}));
 //        String postContent3 = gson.toJson(post3);
 //
 //        mockMvc.perform(
