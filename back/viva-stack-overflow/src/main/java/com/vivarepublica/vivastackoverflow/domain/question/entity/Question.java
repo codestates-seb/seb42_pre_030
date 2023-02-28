@@ -3,17 +3,13 @@ package com.vivarepublica.vivastackoverflow.domain.question.entity;
 import com.vivarepublica.vivastackoverflow.audit.Auditable;
 import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
 import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
-import com.vivarepublica.vivastackoverflow.domain.tag.entity.Tag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -44,15 +40,15 @@ public class Question extends Auditable {
        private List<Answer> answers = new ArrayList<>();
 
        //tag join
-       @ToString.Exclude    //무한참조 방지
-       @ManyToMany
-       @JoinTable(name = "question_tag", joinColumns = @JoinColumn(name ="question_id"),
-               inverseJoinColumns = @JoinColumn(name = "tag_id"))
-       private Set<Tag> tags = new LinkedHashSet<>();
-
-       public void addTag(Tag tag) {
-              this.tags.add(tag);
-       }
+//       @ToString.Exclude    //무한참조 방지
+//       @ManyToMany
+//       @JoinTable(name = "question_tag", joinColumns = @JoinColumn(name ="question_id"),
+//               inverseJoinColumns = @JoinColumn(name = "tag_id"))
+//       private Set<Tag> tags = new LinkedHashSet<>();
+//
+//       public void addTag(Tag tag) {
+//              this.tags.add(tag);
+//       }
 
        //member join
        @ManyToOne(fetch = LAZY)
@@ -63,5 +59,14 @@ public class Question extends Auditable {
               this.member = member;
        }
 
+       public Question(String title, String content) {
+              this.title = title;
+              this.content = content;
+       }
 
+       public Question(Long questionId, String title, String content) {
+              this.questionId = questionId;
+              this.title = title;
+              this.content = content;
+       }
 }

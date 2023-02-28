@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 public class QuestionDto {
 
@@ -20,7 +19,13 @@ public class QuestionDto {
         @NotBlank(message = "필수 기입 항목입니다.")
         private String content;
 
-        private List<String> tag;
+//        private Set<Tag> tag;
+//
+//        private Long tagId;
+//
+//        private HashTag tagName;
+//
+//        private Set<Question> questions;
 
 
     }
@@ -38,7 +43,7 @@ public class QuestionDto {
         @NotBlank(message = "필수 기입 항목입니다.")
         private String content;
 
-        private List<String> tag;
+//        private Set<Tag> tag;
 
     }
 
@@ -57,7 +62,7 @@ public class QuestionDto {
         //private Blob files;
 
         //tag 이름만 보내면 되니까 List<String> 처리
-        private List<String> tag;
+//        private Set<Tag> tag;
 
         //like 갯수만 필요하므로 int 처리
         private int like;
