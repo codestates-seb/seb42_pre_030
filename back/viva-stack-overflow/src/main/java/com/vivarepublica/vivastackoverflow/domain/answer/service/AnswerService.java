@@ -4,6 +4,8 @@ import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
 import com.vivarepublica.vivastackoverflow.domain.answer.repository.AnswerRepository;
 import com.vivarepublica.vivastackoverflow.domain.member.service.MemberService;
 import com.vivarepublica.vivastackoverflow.domain.question.service.QuestionService;
+import com.vivarepublica.vivastackoverflow.exception.BusinessLogicException;
+import com.vivarepublica.vivastackoverflow.exception.ExceptionCode;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -73,7 +75,7 @@ public class AnswerService {
         Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
 
         return optionalAnswer.orElseThrow(() ->
-                new RuntimeException("Answer not found"));
+                new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
     }
 
     private void verifyAnswer(Answer answer) { // 작성자, 질문글 검증

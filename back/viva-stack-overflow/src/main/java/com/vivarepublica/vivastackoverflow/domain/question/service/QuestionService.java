@@ -2,6 +2,8 @@ package com.vivarepublica.vivastackoverflow.domain.question.service;
 
 import com.vivarepublica.vivastackoverflow.domain.question.entity.Question;
 import com.vivarepublica.vivastackoverflow.domain.question.repository.QuestionRepository;
+import com.vivarepublica.vivastackoverflow.exception.BusinessLogicException;
+import com.vivarepublica.vivastackoverflow.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -66,9 +68,9 @@ public class QuestionService {
     private Question verifyQuestionById(Long questionId) {
         Optional<Question> OptionalQuestion = questionRepository.findById(questionId);
         if (OptionalQuestion.isEmpty()) {
-            throw new RuntimeException("존재하지 않는 질문입니다.");
+            throw new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND);
         }
-        return OptionalQuestion.orElseThrow(() -> new RuntimeException("존재하지 않는 질문입니다."));
+        return OptionalQuestion.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
     }
 
 }
