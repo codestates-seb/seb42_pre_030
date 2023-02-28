@@ -7,6 +7,8 @@ import icon_fb from "../../assets/IMG/--icon--facebook.png";
 import icon_google from "../../assets/IMG/--icon--google.png";
 import icon_github from "../../assets/IMG/--icon--github.png";
 import logo_stackoverflow from "../../assets/IMG/--logo--toss.png";
+import Header from "../template/Header";
+
 
 export const GlobalStyle = createGlobalStyle`
 body {
@@ -16,12 +18,13 @@ body {
 `;
 
 export const Main = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    padding:40px 0;
+    box-sizing:border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px 280px;
 `;
 export const Components = styled.div`
     display: flex;
@@ -50,6 +53,11 @@ export const SocialLoginBtn = styled.div`
     align-items: center;
     background-color: ${(props) => props.bgcolor ? props.bgcolor : "white"};
     color: ${(props) => props.color ? props.color : "black"};
+
+    cursor: pointer;
+    &:hover {
+      background-color: ${(props) => props.hcolor ? props.hcolor : "black"};
+  }
 `;
 
 export const LoginBtn = styled(SocialLoginBtn)`
@@ -58,17 +66,22 @@ export const LoginBtn = styled(SocialLoginBtn)`
     padding:10.4px;
     margin:2px;
     background-color: var(--viva-blue-300);
+    border:1px solid transparent;
+    box-shadow:inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
+    &:hover {
+      background-color: var(--h-4);
+  }
 `;
 
-export const SocialBtn = ({ name, href, bgcolor, color }) => {
+export const SocialBtn = ({ name, href, bgcolor, color, hcolor }) => {
     return (
-        <SocialLoginBtn bgcolor={bgcolor} color={color}>
+        <SocialLoginBtn bgcolor={bgcolor} color={color} hcolor={hcolor}>
             <img src={href} alt="아이콘 이미지" width="15px"></img>
             <span>Log in with {name}</span>
         </SocialLoginBtn>
     )
 }
-export const LoginBox = styled.div`
+export const LoginBox = styled.form`
     height: 186.188px;
     width: 230px;
     /* border: 1px solid #dbdbdb; */
@@ -105,6 +118,7 @@ export const LoginInput = styled.input`
     border: 1px solid #dbdbdb;
     border-radius: 3px;
     padding: 7.8px 9.1px;
+    outline:none;
 `;
 export const SLink = styled.a`
     color:var(--viva-blue-400);
@@ -133,25 +147,26 @@ export const LoginForm = () => {
     return (
         <>
             <GlobalStyle />
+            <Header />
             <Main>
                 <Components>
                     <StackoverflowImg />
-                    <SocialBtn name={'Google'} href={icon_google} />
-                    <SocialBtn name={'GitHub'} href={icon_github} bgcolor="var(--gray-400)" color="white" />
-                    <SocialBtn name={'Facebook'} href={icon_fb} bgcolor="var(--viva-blue-500)" color="white" />
+                    <SocialBtn name={'Google'} href={icon_google} hcolor="var(--h-1)" />
+                    <SocialBtn name={'GitHub'} href={icon_github} bgcolor="var(--gray-400)" color="white" hcolor="var(--h-2)" />
+                    <SocialBtn name={'Facebook'} href={icon_fb} bgcolor="var(--viva-blue-500)" color="white" hcolor="var(--h-3)" />
                     <LoginBox>
                         <InputForm>
-                            <Label for="email">Email</Label>
+                            <Label htmlFor="email">Email</Label>
                             <LoginInput type="email" maxLength={100} name="email" />
                         </InputForm>
                         <InputForm>
-                            <Label for="password">Password
+                            <Label htmlFor="password">Password
                                 <SLink href="https://stackoverflow.com/users/account-recovery">Forgot password?</SLink>
                             </Label>
                             <LoginInput type="password" autoComplete="off" name="password" id="password" />
                         </InputForm>
                         <InputForm>
-                            <LoginBtn color="white">Log in</LoginBtn>
+                            <LoginBtn type="submit" color="white">Log in</LoginBtn>
                         </InputForm>
                     </LoginBox>
                     <LinkBox>

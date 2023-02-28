@@ -16,7 +16,7 @@ const Header = () => {
     height: 60px;
     left: 0;
     position: sticky;
-    width: 100vw;
+    width: 100%;
     z-index: 999;
     justify-content: space-around;
     `

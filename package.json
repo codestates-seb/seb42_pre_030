@@ -2,8 +2,6 @@
   "name": "backup",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://xxx",
-
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -14,6 +12,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^2.1.0",
+    "react-hook-form": "^7.43.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",

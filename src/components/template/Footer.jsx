@@ -2,7 +2,7 @@ import styled from "styled-components";
 import logo_stackoverflow from '../../assets/IMG/--logo--toss.png'
 
 const FooterComponent2 = styled.footer`
-  width: 100vw;
+  width: 100%;
   height: max-content;
   background-color: hsl(210, 8%, 15%);
   color: hsl(210, 8%, 60%);
@@ -10,11 +10,12 @@ const FooterComponent2 = styled.footer`
   padding-bottom: 0px;
 
   .footerContainer {
+    box-sizing:border-box;
     margin: 0;
     display: flex;
     justify-content: space-between;
     padding: 32px 12px 12px;
-    width: 100vw;
+    width: 100%;
     height: 100%;
 
     .icon {
