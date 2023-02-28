@@ -10,11 +10,25 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-27T12:11:59+0900",
+    date = "2023-02-27T21:29:54+0900",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.6.jar, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
 public class AnswerMapperImpl implements AnswerMapper {
+
+    @Override
+    public Answer answerPatchDtoToAnswer(AnswerDto.Patch answerPatchDto) {
+        if ( answerPatchDto == null ) {
+            return null;
+        }
+
+        Answer answer = new Answer();
+
+        answer.setAnswerId( answerPatchDto.getAnswerId() );
+        answer.setContent( answerPatchDto.getContent() );
+
+        return answer;
+    }
 
     @Override
     public AnswerDto.Response answerToAnswerResponseDto(Answer answer) {
