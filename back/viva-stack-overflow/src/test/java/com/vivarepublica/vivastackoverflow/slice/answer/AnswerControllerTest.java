@@ -243,7 +243,6 @@ public class AnswerControllerTest {
                 mockMvc.perform(
                         delete("/answers/{answer-id}", 1L)
                                 .accept(MediaType.APPLICATION_JSON)
-                                .contentType(MediaType.APPLICATION_JSON)
                                 .param("memberId", "1")
                 );
 

@@ -74,7 +74,7 @@ bootJar {
 		into 'static/docs'
 	}
 
-def querydslSrcDir = '$buildDir/generated/querydsl'
+def querydslSrcDir = 'build/generated/querydsl'
 sourceSets {
 	main {
 		java {
