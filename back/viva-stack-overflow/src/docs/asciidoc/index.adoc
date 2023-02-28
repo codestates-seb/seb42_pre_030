@@ -205,6 +205,40 @@ include::{snippets}/get-answers/http-response.adoc[]
 .response-fields
 include::{snippets}/get-answers/response-fields.adoc[]
 
+=== 답변 수정
+.curl-request
+include::{snippets}/patch-answer/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-answer/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/patch-answer/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/patch-answer/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-answer/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-answer/response-fields.adoc[]
+
+=== 답변 삭제
+.curl-request
+include::{snippets}/delete-answer/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-answer/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/delete-answer/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/delete-answer/http-response.adoc[]
+
+== AnswerLikeController (구현 예정)
+
 == LogoutController
 === 로그아웃
 .curl-request

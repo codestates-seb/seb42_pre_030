@@ -3,6 +3,7 @@ package com.vivarepublica.vivastackoverflow.domain.answer.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -21,6 +22,21 @@ public class AnswerDto {
         private String content;
 
         // TODO: 첨부파일
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public static class Patch {
+        private Long answerId;
+        private Long memberId;
+        @NotBlank(message = "답변은 공백이 아니어야 합니다")
+        private String content;
+
+        public Patch addAnswerId(Long answerId) {
+            Assert.notNull(answerId, "answer id must not be null."); // NULL 검증, 값이 NULL이면 IllegalArgumentException
+            this.answerId = answerId;
+            return this;
+        }
     }
 
     @AllArgsConstructor
