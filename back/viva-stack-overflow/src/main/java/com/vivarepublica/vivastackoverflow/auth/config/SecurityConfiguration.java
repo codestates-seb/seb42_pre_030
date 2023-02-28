@@ -44,10 +44,26 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
+                        // 회원 접근 제어
                         .antMatchers(HttpMethod.POST, "/members").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/members/**").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")
+                        // 질문 접근 제어
+                        .antMatchers(HttpMethod.POST, "/questions").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/questions").permitAll()
+                        .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/questions").hasRole("USER")
+                        // 답변 접근 제어
+                        .antMatchers(HttpMethod.POST, "/answers").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/answers/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/answers/**").permitAll()
+                        .antMatchers(HttpMethod.DELETE, "/answers/**").hasRole("USER")
+                        // 로그아웃 접근 제어
+                        .antMatchers(HttpMethod.POST, "/auth/logout").hasRole("USER")
+
                         .anyRequest().permitAll()
                 );
 
