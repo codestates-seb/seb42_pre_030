@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/logoutPath")
+@RequestMapping("/auth/logout")
 public class LogoutController {
     private final LogoutService logoutService;
 

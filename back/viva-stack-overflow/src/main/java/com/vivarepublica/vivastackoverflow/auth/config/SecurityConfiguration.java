@@ -78,6 +78,7 @@ public class SecurityConfiguration {
 
             JwtAuthenticationFilter jwtAuthenticationFilter =
                     new JwtAuthenticationFilter(authenticationManager, jwtTokenizer, redisTemplate);
+            jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
 
             JwtVerificationFilter jwtVerificationFilter =
                     new JwtVerificationFilter(jwtTokenizer, authorityUtils, redisTemplate);
