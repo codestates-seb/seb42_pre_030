@@ -7,6 +7,8 @@ import com.vivarepublica.vivastackoverflow.domain.question.repository.QuestionRe
 import com.vivarepublica.vivastackoverflow.domain.questionLike.dto.QuestionLikeDto;
 import com.vivarepublica.vivastackoverflow.domain.questionLike.entity.QuestionLike;
 import com.vivarepublica.vivastackoverflow.domain.questionLike.repository.QuestionLikeRepository;
+import com.vivarepublica.vivastackoverflow.exception.BusinessLogicException;
+import com.vivarepublica.vivastackoverflow.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,15 +25,15 @@ public class QuestionLikeService {
     public QuestionLikeDto post(QuestionLikeDto questionLikeDto) throws Exception {
 
         Member member = memberRepository.findById(questionLikeDto.getMemberId())
-                .orElseThrow(() -> new RuntimeException("회원 정보를 찾을 수 없습니다."));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 
         Question question = questionRepository.findById(questionLikeDto.getQuestionId())
-                .orElseThrow(() -> new RuntimeException("질문을 찾을 수 없습니다."));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 
         //좋아요 이미 존재할 경우 에러 리턴
         if (questionLikeRepository.findByMemberAndQuestion(member, question).isPresent()) {
             // error
-            throw new RuntimeException("이미 처리된 좋아요입니다.");
+            throw new BusinessLogicException(ExceptionCode.LIKE_EXISTS);
         }
 
         QuestionLike questionLike = QuestionLike.builder()

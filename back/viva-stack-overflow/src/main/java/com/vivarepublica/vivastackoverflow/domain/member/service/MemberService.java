@@ -3,6 +3,8 @@ package com.vivarepublica.vivastackoverflow.domain.member.service;
 import com.vivarepublica.vivastackoverflow.auth.util.CustomAuthorityUtils;
 import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import com.vivarepublica.vivastackoverflow.domain.member.repository.MemberRepository;
+import com.vivarepublica.vivastackoverflow.exception.BusinessLogicException;
+import com.vivarepublica.vivastackoverflow.exception.ExceptionCode;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -55,13 +57,13 @@ public class MemberService {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
 
         if (optionalMember.isPresent()) {
-            throw new RuntimeException("Member already exists");
+            throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
         }
     }
 
     public void verifyAskedMember(long memberId1, long memberId2) {
         if (memberId1 != memberId2) {
-            throw new RuntimeException("Asked member only");
+            throw new BusinessLogicException(ExceptionCode.ASKED_MEMBER_ONLY);
         }
     }
 
@@ -69,6 +71,6 @@ public class MemberService {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
 
         return optionalMember.orElseThrow(() ->
-                new RuntimeException("Member not found"));
+                new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 }
