@@ -5,6 +5,8 @@ import com.vivarepublica.vivastackoverflow.auth.filter.JwtVerificationFilter;
 import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import com.vivarepublica.vivastackoverflow.auth.util.CustomAuthorityUtils;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,8 +16,12 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -24,11 +30,15 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
     private final RedisTemplate<String, Object> redisTemplate;
+    @Value("${spring.security.oauth2.client.registration.google.clientId}")
+    private String clientId;
+    @Value("${spring.security.oauth2.client.registration.google.clientSecret}")
+    private String clientSecret;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -48,10 +58,27 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/members/**").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")
-                        .anyRequest().permitAll()
-                );
+                        .anyRequest().authenticated()
+                )
+                .oauth2Login(Customizer.withDefaults());
 
         return http.build();
+    }
+
+    @Bean
+    public ClientRegistrationRepository clientRegistrationRepository() {
+        var clientRegistration = clientRegistration();
+
+        return new InMemoryClientRegistrationRepository(clientRegistration);
+    }
+
+    private ClientRegistration clientRegistration() {
+        return CommonOAuth2Provider
+                .GOOGLE
+                .getBuilder("google")
+                .clientId(clientId)
+                .clientSecret(clientSecret)
+                .build();
     }
 
     @Bean
