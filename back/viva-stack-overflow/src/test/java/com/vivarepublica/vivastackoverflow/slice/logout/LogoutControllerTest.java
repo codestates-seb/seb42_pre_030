@@ -52,7 +52,7 @@ public class LogoutControllerTest {
         // when
         ResultActions actions =
                 mockMvc.perform(
-                        post("/logoutPath")
+                        post("/auth/logout")
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(postContent)

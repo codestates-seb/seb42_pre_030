@@ -5,15 +5,15 @@ import com.vivarepublica.vivastackoverflow.domain.question.entity.Question;
 import com.vivarepublica.vivastackoverflow.domain.question.mapper.QuestionMapper;
 import com.vivarepublica.vivastackoverflow.domain.question.service.QuestionService;
 import com.vivarepublica.vivastackoverflow.domain.response.MultiResponseDto;
+import com.vivarepublica.vivastackoverflow.util.UriCreator;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,29 +30,23 @@ public class QuestionController {
     public ResponseEntity postQuestion(@RequestBody QuestionDto.Post questionPost) {
 
         Question question = questionMapper.questionPostDtoToQuestion(questionPost);
-        Question createdQuestion = questionService.createQuestion(question);
-        QuestionDto.Response questionResponse = questionMapper.questionToQuestionResponseDto(createdQuestion);
-
-        return new ResponseEntity<>(questionResponse, HttpStatus.CREATED);
+        Question createdQuestion = questionService.create(question);
+//        QuestionDto.Response questionResponse = questionMapper.questionToQuestionResponseDto(createdQuestion);
+        URI location = UriCreator.createUri("/questions", createdQuestion.getQuestionId());
+        return ResponseEntity.created(location).build();
     }
 
     //Patch
     @PatchMapping("/{question-id}")
-    public ResponseEntity PatchQuestion(@PathVariable("question-id") @Positive Long questionId,
+    public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive Long questionId,
                                         @RequestBody QuestionDto.Patch patch) {
 
-//        List<String> questionTag = new ArrayList<>();
-//        questionTag.add("태그1");
-//        questionTag.add("태그2");
-//
-//        QuestionDto.Response patch = new QuestionDto.Response(questionId, "제목22", "내용22", questionTag, 3);
-
+        patch.setQuestionId(questionId);
         Question question = questionMapper.questionPatchDtoToQuestion(patch);
-        //question.setQuestionId(questionId);
         Question patchQuestion = questionService.patch(question);
         QuestionDto.Response response = questionMapper.questionToQuestionResponseDto(patchQuestion);
 
-        return ResponseEntity.ok(response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     //Get One
@@ -76,14 +70,13 @@ public class QuestionController {
 //                                                      new QuestionDto.Response(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),
 //                                                      new QuestionDto.Response(3L, "제목3", "내용3", List.of(new String[]{"태그123", "태그223"}), 3));
 
-        List<Question> questions = questionService.getAll();
-        List<QuestionDto.Response> responses = questionMapper.questionToQuestionResponseDtos(questions);
+        Page<Question> pageQuestions = questionService.getAll(page - 1, size);
+        List<Question> responses = pageQuestions.getContent();
 
-        Page<QuestionDto.Response> pageQuestions = new PageImpl<>(responses, PageRequest.of(page,size),3);
-        List<QuestionDto.Response> responseList = pageQuestions.getContent();
-
-        return new ResponseEntity(new MultiResponseDto<>(responseList, pageQuestions), HttpStatus.OK);
-
+        return new ResponseEntity(new MultiResponseDto<>(
+                questionMapper.questionToQuestionResponseDtos(responses),
+                pageQuestions),
+                HttpStatus.OK);
 
     }
 
