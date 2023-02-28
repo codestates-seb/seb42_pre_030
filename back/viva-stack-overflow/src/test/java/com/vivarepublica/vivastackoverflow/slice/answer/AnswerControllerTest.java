@@ -104,7 +104,7 @@ public class AnswerControllerTest {
     @Test
     public void patchAnswerTest() throws Exception {
         // given
-        AnswerDto.Patch patch = new AnswerDto.Patch(1L, "Answer Patch 테스트 입니다.");
+        AnswerDto.Patch patch = new AnswerDto.Patch(1L, 1L,"Answer Patch 테스트 입니다.");
         String content = gson.toJson(patch);
 
         given(answerMapper.answerPatchDtoToAnswer(Mockito.any(AnswerDto.Patch.class))).willReturn(new Answer());
@@ -140,6 +140,7 @@ public class AnswerControllerTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("answerId").type(JsonFieldType.NUMBER).description("수정할 답변 식별자 ID").ignored(),
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("수정할 답변의 작성자 식별 ID"),
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("수정할 답변 내용")
                                 )
                         ),
@@ -235,13 +236,15 @@ public class AnswerControllerTest {
     @Test
     public void deleteAnswerTest() throws Exception {
         // given
-        doNothing().when(answerService).deleteAnswer(Mockito.anyLong());
+        doNothing().when(answerService).deleteAnswer(Mockito.anyLong(), Mockito.anyLong());
 
         // when
         ResultActions deleteAction =
                 mockMvc.perform(
                         delete("/answers/{answer-id}", 1L)
                                 .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .param("memberId", "1")
                 );
 
         // then
@@ -252,7 +255,10 @@ public class AnswerControllerTest {
                         getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("answer-id").description("삭제할 답변 식별자 ID")
-                            )
+                            ),
+                        requestParameters(
+                                parameterWithName("memberId").description("삭제할 답변의 작성자 식별 ID")
+                        )
                         )
                 );
     }

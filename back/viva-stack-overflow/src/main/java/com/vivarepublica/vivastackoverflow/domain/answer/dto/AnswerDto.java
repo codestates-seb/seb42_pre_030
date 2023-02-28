@@ -28,6 +28,7 @@ public class AnswerDto {
     @Getter
     public static class Patch {
         private Long answerId;
+        private Long memberId;
         @NotBlank(message = "답변은 공백이 아니어야 합니다")
         private String content;
 

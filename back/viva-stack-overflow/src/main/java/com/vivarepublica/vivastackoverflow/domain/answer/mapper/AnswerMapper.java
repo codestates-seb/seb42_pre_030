@@ -16,17 +16,29 @@ public interface AnswerMapper {
         Member member = new Member();
         Question question = new Question();
 
+        answer.setContent(answerPostDto.getContent());
+
         member.setMemberId(answerPostDto.getMemberId());
         question.setQuestionId(answerPostDto.getQuestionId());
-        answer.setContent(answerPostDto.getContent());
 
         answer.setMember(member);
         answer.setQuestion(question);
 
         return answer;
     }
+    default Answer answerPatchDtoToAnswer(AnswerDto.Patch answerPatchDto) {
+        Answer answer = new Answer();
+        Member member = new Member();
 
-    Answer answerPatchDtoToAnswer(AnswerDto.Patch answerPatchDto);
+        answer.setAnswerId(answerPatchDto.getAnswerId());
+        answer.setContent(answerPatchDto.getContent());
+
+        member.setMemberId(answerPatchDto.getMemberId());
+
+        answer.setMember(member);
+
+        return answer;
+    }
 
     @Mapping(source = "prettyCreatedAt", target = "createdAt")
     @Mapping(source = "prettyModifiedAt", target = "modifiedAt")

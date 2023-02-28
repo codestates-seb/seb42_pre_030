@@ -59,6 +59,12 @@ public class MemberService {
         }
     }
 
+    public void verifyAskedMember(long memberId1, long memberId2) {
+        if (memberId1 != memberId2) {
+            throw new RuntimeException("Asked member only");
+        }
+    }
+
     private Member findVerifiedMember(Long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
 
