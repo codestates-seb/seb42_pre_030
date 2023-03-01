@@ -11,9 +11,9 @@ const QuestionsMain = () => {
     const Mainpage = styled.div`
     display: flex;
     flex-direction: column;
-    width: 60vw;
     justify-content: center;
-    margin-top: 0;
+    padding: 24px;
+    border-left:1px solid rgb(181, 181, 181);
 `
 
     return (

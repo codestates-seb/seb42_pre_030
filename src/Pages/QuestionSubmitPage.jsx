@@ -8,8 +8,8 @@ const QuestionSubmitPage = function () {
 
     const MainBar = styled.div`
     display: flex;
-    flex-direction: row;
-    width: 500px;
+    justify-content: center;
+    
     
 `
 

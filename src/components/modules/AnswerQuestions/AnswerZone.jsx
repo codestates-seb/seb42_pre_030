@@ -7,8 +7,7 @@ const AnswerZone = function () {
     const PostLayout = styled.div`
     display: flex;
     flex-direction: row;
-    margin-left: 15vh;
-    width: 840px;
+    width: 900px;
     padding-bottom: 24px;
     `
 
@@ -24,7 +23,6 @@ const AnswerZone = function () {
         `
 
     const EditBtn = styled.div`
-            all: unset;
         background-color: rgb(225, 236, 244);
         box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.3);
         border: 1px solid rgb(57, 115, 157);
@@ -33,13 +31,14 @@ const AnswerZone = function () {
         font-size: 14px;
         font-weight: 400;
         text-align: center;
+        margin-top: 30px;
         &:hover {
             background-color: rgb(185, 210, 232);
         }
         `
 
     const UserName = styled.p`
-        margin-left: 50vw;
+        margin-left: 800px;
         `
 
     const VoteIcon = styled.button`

@@ -4,12 +4,14 @@ import styled, { createGlobalStyle } from "styled-components";
 const AnswerForm = function () {
 
     const AnswerLayout = styled.div`
-        margin-left: 10vw;
-        width: 840px;
+    margin: 10px;
+    width: 900px;
+    padding: 30px;
         `
 
     const TextForm = styled.textarea`
-        width: 840px;
+        width: 910px;
+        height: 100px;
         margin: 0;
         `
 

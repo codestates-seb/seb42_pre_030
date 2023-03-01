@@ -5,8 +5,7 @@ import styled, { createGlobalStyle } from "styled-components";
 const QuestionHeader = function () {
 
     const QHeader = styled.div`
-    margin-left: 15vh;
-    width: 840px;
+    width: 900px;
     padding-bottom: 24px;
     margin-top: 50px
     `

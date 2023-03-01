@@ -9,9 +9,7 @@ const AnswerQuestionUnLoginPage = function () {
 
     const MainBar = styled.div`
     display: flex;
-    flex-direction: row;
-    width: 840px;
-    
+    justify-content: center;
 `
 
     return (

@@ -14,12 +14,11 @@ const AnswerSubmitMain = () => {
     const Mainpage = styled.div`
     display: flex;
     flex-direction: column;
-    margin-left: 15vw;
-    
     justify-content: center;
+    align-items: center;
     margin-top: 0;
-    margin-left: 0;
-    margin-bottom: 100px;
+    padding: 24px;
+    border-left:1px solid rgb(181, 181, 181);
 `
 
     const Line = styled.div`
@@ -37,6 +36,9 @@ const AnswerSubmitMain = () => {
                 <QuestionHeader />
                 <QuestionZone />
                 <Line />
+                <AnswerZone />
+                <AnswerZone />
+                <AnswerZone />
                 <AnswerZone />
                 <AnswerForm />
             </Mainpage>
