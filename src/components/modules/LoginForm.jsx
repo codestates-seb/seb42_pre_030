@@ -2,13 +2,14 @@
 
 import styled, { createGlobalStyle } from "styled-components";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import "../../assets/styles/variable.css";
 import icon_fb from "../../assets/IMG/--icon--facebook.png";
 import icon_google from "../../assets/IMG/--icon--google.png";
 import icon_github from "../../assets/IMG/--icon--github.png";
 import logo_stackoverflow from "../../assets/IMG/--logo--toss.png";
 import Header from "../template/Header";
-
+import axios from "axios";
 
 export const GlobalStyle = createGlobalStyle`
 body {
@@ -142,8 +143,53 @@ export const Etc = styled.div`
     margin-bottom: 10px;
     color:var(--gray-500);
 `;
-
+export const Btn = styled.button`
+    width:230px;
+    padding:10px;
+    margin:4px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    border-radius: 5px;
+    background-color:var(--viva-blue-300);
+    border:1px solid transparent;
+    color:white;
+    cursor: pointer;
+    box-shadow:inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
+    &:hover {
+      background-color: var(--h-4);
+  }
+`;
 export const LoginForm = () => {
+    const URI = "http://ec2-3-35-220-165.ap-northeast-2.compute.amazonaws.com:8080";
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        await axios({
+            method: 'post',
+            // url: `/members`,
+            url: `${URI}/auth/login`,
+            params: {},
+            data: data,
+        }, { withCredentials: true })
+
+            .then((res) => {
+                alert('로그인 성공')
+            })
+            .catch((err) => { console.log(err) })
+    };
+
+    const onError = (error) => {
+        console.log(error);
+    };
+
+    const Errorspan = styled.span`
+    color:red;  
+    font-size: 12px;
+    `
+
     return (
         <>
             <GlobalStyle />
@@ -154,19 +200,27 @@ export const LoginForm = () => {
                     <SocialBtn name={'Google'} href={icon_google} hcolor="var(--h-1)" />
                     <SocialBtn name={'GitHub'} href={icon_github} bgcolor="var(--gray-400)" color="white" hcolor="var(--h-2)" />
                     <SocialBtn name={'Facebook'} href={icon_fb} bgcolor="var(--viva-blue-500)" color="white" hcolor="var(--h-3)" />
-                    <LoginBox>
+                    <LoginBox onSubmit={handleSubmit(onSubmit, onError)}>
                         <InputForm>
-                            <Label htmlFor="email">Email</Label>
-                            <LoginInput type="email" maxLength={100} name="email" />
+                            <Label htmlFor="username">Email</Label>
+                            <LoginInput type="text" maxLength={100} name="username"
+                                {...register("username", {
+                                    required: "username is required"
+                                })} />
+                                <Errorspan>{errors.username && errors.username.message}</Errorspan>
                         </InputForm>
                         <InputForm>
                             <Label htmlFor="password">Password
                                 <SLink href="https://stackoverflow.com/users/account-recovery">Forgot password?</SLink>
                             </Label>
-                            <LoginInput type="password" autoComplete="off" name="password" id="password" />
+                            <LoginInput type="password" autoComplete="off" name="password" id="password"
+                                {...register("password", {
+                                    required: "password is required"
+                                })} />
+                                <Errorspan>{errors.password && errors.password.message}</Errorspan>
                         </InputForm>
                         <InputForm>
-                            <LoginBtn type="submit" color="white">Log in</LoginBtn>
+                            <Btn type="submit" color="white">Log in</Btn>
                         </InputForm>
                     </LoginBox>
                     <LinkBox>

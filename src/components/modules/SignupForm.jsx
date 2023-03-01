@@ -122,7 +122,7 @@ const Form = styled.div`
     display: flex;
     align-items: baseline;
 `
-const Btn = styled.button`
+export const Btn = styled.button`
     width:270px;
     padding:10px;
     margin:4px 0;
@@ -142,7 +142,7 @@ const Btn = styled.button`
 `
 
 export const SignupForm = () => {
-    const URI = "https://a202-39-121-143-132.jp.ngrok.io";
+    const URI = "http://ec2-3-35-220-165.ap-northeast-2.compute.amazonaws.com:8080";
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
         console.log(data);
