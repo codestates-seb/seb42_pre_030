@@ -66,7 +66,7 @@ public class LogoutControllerTest {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestFields(
-                                fieldWithPath("accessToken").type(JsonFieldType.STRING).description("로그인 후 발급받은 AccessToken")
+                                fieldWithPath("authorization").type(JsonFieldType.STRING).description("로그아웃 하고 싶은 authorization")
                         )
                 ));
     }
