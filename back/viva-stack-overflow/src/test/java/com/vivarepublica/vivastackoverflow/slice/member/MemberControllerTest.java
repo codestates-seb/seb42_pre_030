@@ -107,7 +107,7 @@ public class MemberControllerTest {
         String patchContent = gson.toJson(patchMemberDto);
 
         MemberDto.Response responseBody =
-                new MemberDto.Response(memberId, "kim@gmail.com", "kimWexler");
+                new MemberDto.Response(memberId, "kim@gmail.com", "kimWexler", "2023-03-01 11:54:47", "2023-03-01 12:09:20");
 
         given(mapper.memberPatchDtoToMember(Mockito.any(MemberDto.Patch.class)))
                 .willReturn(new Member());
@@ -148,7 +148,9 @@ public class MemberControllerTest {
                                 List.of(
                                         fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 아이디"),
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
-                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명")
+                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원가입 날짜 및 시간"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("회원정보 수정 날짜 및 시간")
                                 )
                         )
                 ));
@@ -159,7 +161,7 @@ public class MemberControllerTest {
         // given
         Long memberId = 1L;
         MemberDto.Response responseBody =
-                new MemberDto.Response(memberId, "frank@gmail.com", "francis");
+                new MemberDto.Response(memberId, "frank@gmail.com", "francis", "2023-03-01 11:54:47", "2023-03-01 12:09:20");
 
         given(memberService.findMember(Mockito.anyLong()))
                 .willReturn(new Member());
@@ -189,7 +191,9 @@ public class MemberControllerTest {
                                 List.of(
                                         fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 아이디"),
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
-                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명")
+                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원가입 날짜 및 시간"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("회원정보 수정 날짜 및 시간")
                                 )
                         )
                 ));

@@ -41,16 +41,27 @@ public class MemberService {
 
         foundMember.setNickname(member.getNickname());
 
+        prettifyDateTime(foundMember);
+
         return foundMember;
     }
 
     @Transactional(readOnly = true)
     public Member findMember(Long memberId) {
-        return findVerifiedMember(memberId);
+        Member foundMember = findVerifiedMember(memberId);
+
+        prettifyDateTime(foundMember);
+
+        return foundMember;
     }
 
     public void deleteMember(Long memberId) {
         memberRepository.deleteById(memberId);
+    }
+
+    private void prettifyDateTime(Member member) {
+        member.setPrettyCreatedAt(member.getFormattedCreatedAt());
+        member.setPrettyModifiedAt(member.getFormattedModifiedAt());
     }
 
     private void verifyExistsMember(String email) {
