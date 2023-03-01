@@ -38,5 +38,7 @@ public class MemberDto {
         private Long memberId;
         private String email;
         private String nickname;
+        private String createdAt;
+        private String modifiedAt;
     }
 }
