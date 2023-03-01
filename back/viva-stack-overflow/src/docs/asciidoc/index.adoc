@@ -24,8 +24,8 @@ include::{snippets}/post-member/request-fields.adoc[]
 .http-response
 include::{snippets}/post-member/http-response.adoc[]
 
-.response-headers
-include::{snippets}/post-member/response-headers.adoc[]
+.response-fields
+include::{snippets}/post-member/response-fields.adoc[]
 
 === 회원정보 수정
 .curl-request
@@ -46,7 +46,7 @@ include::{snippets}/patch-member/http-response.adoc[]
 .response-fields
 include::{snippets}/patch-member/response-fields.adoc[]
 
-=== 회원정보 조회
+=== 회원정보 조회(아이디)
 .curl-request
 include::{snippets}/get-member/curl-request.adoc[]
 
@@ -61,6 +61,22 @@ include::{snippets}/get-member/http-response.adoc[]
 
 .response-fields
 include::{snippets}/get-member/response-fields.adoc[]
+
+=== 회원정보 조회(이메일)
+.curl-request
+include::{snippets}/get-member-by-email/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-member-by-email/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-member-by-email/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/get-member-by-email/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-member-by-email/response-fields.adoc[]
 
 === 회원탈퇴
 .curl-request
