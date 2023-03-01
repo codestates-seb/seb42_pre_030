@@ -39,6 +39,7 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'mysql:mysql-connector-java:8.0.29'
 
 	implementation 'com.querydsl:querydsl-jpa'
 	implementation 'com.querydsl:querydsl-apt'
