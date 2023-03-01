@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LogoutDto {
-    private String accessToken;
+    private String authorization;
 }

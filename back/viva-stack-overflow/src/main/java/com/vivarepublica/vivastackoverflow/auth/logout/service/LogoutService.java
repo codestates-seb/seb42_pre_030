@@ -21,7 +21,7 @@ public class LogoutService {
 
     public void logout(LogoutDto logoutDto) {
         // 앞의 Bearer를 제거한 순수한 AccessToken
-        String jws = logoutDto.getAccessToken().replace("Bearer ", "");
+        String jws = logoutDto.getAuthorization().replace("Bearer ", "");
         // 검증을 위한 base64EncodedSecretKey
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
 
