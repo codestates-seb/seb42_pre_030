@@ -33,7 +33,11 @@ public class MemberService {
         List<String> roles = authorityUtils.createRoles();
         member.setRoles(roles);
 
-        return memberRepository.save(member);
+        Member createdMember = memberRepository.save(member);
+
+        prettifyDateTime(createdMember);
+
+        return createdMember;
     }
 
     public Member updateMember(Member member) {
@@ -49,6 +53,15 @@ public class MemberService {
     @Transactional(readOnly = true)
     public Member findMember(Long memberId) {
         Member foundMember = findVerifiedMember(memberId);
+
+        prettifyDateTime(foundMember);
+
+        return foundMember;
+    }
+
+    @Transactional(readOnly = true)
+    public Member findMemberByEmail(String email) {
+        Member foundMember = findVerifiedMemberByEmail(email);
 
         prettifyDateTime(foundMember);
 
@@ -80,6 +93,13 @@ public class MemberService {
 
     private Member findVerifiedMember(Long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
+
+        return optionalMember.orElseThrow(() ->
+                new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+    }
+
+    private Member findVerifiedMemberByEmail(String email) {
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
 
         return optionalMember.orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));

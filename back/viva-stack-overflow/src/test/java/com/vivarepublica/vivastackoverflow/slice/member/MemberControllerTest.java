@@ -58,14 +58,17 @@ public class MemberControllerTest {
 
         String postContent = gson.toJson(postMemberDto);
 
+        MemberDto.Response responseBody =
+                new MemberDto.Response(1L, "walter@gmail.com", "Heisenberg", "2023-03-01 11:54:47", "2023-03-01 11:54:47");
+
         given(mapper.memberPostDtoToMember(Mockito.any(MemberDto.Post.class)))
                 .willReturn(new Member());
 
-        Member createdMember = new Member();
-        createdMember.setMemberId(1L);
-
         given(memberService.createMember(Mockito.any(Member.class)))
-                .willReturn(createdMember);
+                .willReturn(new Member());
+
+        given(mapper.memberToMemberResponseDto(Mockito.any(Member.class)))
+                .willReturn(responseBody);
 
         // when
         ResultActions actions =
@@ -79,7 +82,7 @@ public class MemberControllerTest {
         // then
         actions
                 .andExpect(status().isCreated())
-                .andExpect(header().string("Location", is("/members/1")))
+                .andExpect(jsonPath("email").value(responseBody.getEmail()))
                 .andDo(document(
                         "post-member",
                         getRequestPreProcessor(),
@@ -91,8 +94,14 @@ public class MemberControllerTest {
                                         fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명")
                                 )
                         ),
-                        responseHeaders(
-                                headerWithName(HttpHeaders.LOCATION).description("Location header. 등록된 리소스의 URI")
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 아이디"),
+                                        fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원가입 날짜 및 시간"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("회원정보 수정 날짜 및 시간")
+                                )
                         )
                 ));
     }
@@ -186,6 +195,48 @@ public class MemberControllerTest {
                         getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("member-id").description("조회할 회원의 아이디")
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 아이디"),
+                                        fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("nickname").type(JsonFieldType.STRING).description("별명"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원가입 날짜 및 시간"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("회원정보 수정 날짜 및 시간")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    void getMemberByEmailTest() throws Exception {
+        String email = "frank@gmail.com";
+        MemberDto.Response responseBody =
+                new MemberDto.Response(1L, email, "francis", "2023-03-01 11:54:47", "2023-03-01 12:09:20");
+
+        given(memberService.findMemberByEmail(Mockito.anyString()))
+                .willReturn(new Member());
+
+        given(mapper.memberToMemberResponseDto(Mockito.any(Member.class)))
+                .willReturn(responseBody);
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        get("/members/{member-email}/info", email)
+                                .accept(MediaType.APPLICATION_JSON)
+                );
+
+        // then
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.email").value(responseBody.getEmail()))
+                .andDo(document(
+                        "get-member-by-email",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("member-email").description("조회할 회원의 이메일")
                         ),
                         responseFields(
                                 List.of(

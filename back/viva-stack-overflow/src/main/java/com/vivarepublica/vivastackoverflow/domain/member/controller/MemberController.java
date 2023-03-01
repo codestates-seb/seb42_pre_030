@@ -30,9 +30,12 @@ public class MemberController {
 
         Member createdMember = memberService.createMember(member);
 
-        URI location = UriCreator.createUri(MEMBER_DEFAULT_URL, createdMember.getMemberId());
+        MemberDto.Response responseBody = mapper.memberToMemberResponseDto(createdMember);
 
-        return ResponseEntity.created(location).build();
+        return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
+
+//        URI location = UriCreator.createUri(MEMBER_DEFAULT_URL, createdMember.getMemberId());
+//        return ResponseEntity.created(location).build();
     }
 
     @PatchMapping("/{member-id}")
@@ -52,6 +55,15 @@ public class MemberController {
     @GetMapping("/{member-id}")
     public ResponseEntity getMember(@PathVariable("member-id") @Positive Long memberId) {
         Member foundMember = memberService.findMember(memberId);
+
+        MemberDto.Response responseBody = mapper.memberToMemberResponseDto(foundMember);
+
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
+    }
+
+    @GetMapping("/{member-email}/info")
+    public ResponseEntity getMemberByEmail(@PathVariable("member-email") String email) {
+        Member foundMember = memberService.findMemberByEmail(email);
 
         MemberDto.Response responseBody = mapper.memberToMemberResponseDto(foundMember);
 
