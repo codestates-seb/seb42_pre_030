@@ -64,7 +64,7 @@ public class QuestionController {
 
     //Get All
     @GetMapping
-    public ResponseEntity getAll(@RequestParam int page, @RequestParam int size) {
+    public ResponseEntity getAll(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
 
 //(stub) List<QuestionDto.Response> getAll = List.of(new QuestionDto.Response(1L, "제목1", "내용1", List.of(new String[]{"태그1", "태그2"}), 1),
 //                                                      new QuestionDto.Response(2L, "제목2", "내용2", List.of(new String[]{"태그12", "태그22"}), 2),

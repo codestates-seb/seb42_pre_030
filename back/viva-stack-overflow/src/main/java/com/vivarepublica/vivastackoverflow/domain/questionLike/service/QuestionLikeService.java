@@ -43,6 +43,7 @@ public class QuestionLikeService {
 
         questionLikeRepository.save(questionLike);
         questionRepository.addLikeCount(question);
+
         return questionLikeDto;
     }
 
