@@ -3,9 +3,14 @@ import styled from "styled-components";
 import "../../assets/styles/GlobalStyle";
 import homeButton from '../../assets/IMG/--logo--viva--black.png';
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Header = () => {
-
+useEffect(()=>{
+    // console.log(axios.defaults.headers.common["Authorization"]);
+    console.log(sessionStorage.getItem("Authorization"));
+},[])
     const Headers = styled.div`
     align-items: center;
     box-sizing: border-box;

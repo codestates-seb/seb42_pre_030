@@ -30,7 +30,7 @@ export const Main = styled.div`
 export const Components = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;
 `;
 const StackoverflowImg = styled.img.attrs({
@@ -163,6 +163,8 @@ export const Btn = styled.button`
 `;
 export const LoginForm = () => {
     const URI = "http://ec2-3-35-220-165.ap-northeast-2.compute.amazonaws.com:8080";
+    // const URI = "https://9824-39-121-143-132.jp.ngrok.io";
+   
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
@@ -176,7 +178,13 @@ export const LoginForm = () => {
         }, { withCredentials: true })
 
             .then((res) => {
+                console.log(res);
+                console.log(res.headers["authorization"])
+                axios.defaults.headers.common["Authorization"]=res.headers["authorization"];
+                sessionStorage.setItem('Authorization', res.headers["authorization"])
                 alert('로그인 성공')
+                // window.location.href='/'
+
             })
             .catch((err) => { console.log(err) })
     };

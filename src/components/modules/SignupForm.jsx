@@ -143,6 +143,7 @@ export const Btn = styled.button`
 
 export const SignupForm = () => {
     const URI = "http://ec2-3-35-220-165.ap-northeast-2.compute.amazonaws.com:8080";
+    // const URI = "https://9824-39-121-143-132.jp.ngrok.io";
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
         console.log(data);
@@ -156,6 +157,7 @@ export const SignupForm = () => {
 
             .then((res) => {
                 alert('회원가입 완료')
+                window.location.href='/login'
             })
             .catch((err) => { console.log(err) })
     };

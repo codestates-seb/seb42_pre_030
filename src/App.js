@@ -11,8 +11,12 @@ import QuestionSubmitPage from './Pages/QuestionSubmitPage';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UserInfoPage from './Pages/UserInfoPage';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    console.warn = function no_console() { }
+  }, [])
   return (
     <BrowserRouter>
       <Routes>
