@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 const Sidebar = function () {
   const Sidebar = styled.nav`
-  border-right: 1px solid rgb(181, 181, 181);
+  /* border-right: 1px solid rgb(181, 181, 181); */
+  
   display: flex;
   flex-direction: column;
   padding-top: 24px;

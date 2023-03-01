@@ -182,6 +182,7 @@ export const LoginForm = () => {
                 console.log(res.headers["authorization"])
                 axios.defaults.headers.common["Authorization"]=res.headers["authorization"];
                 sessionStorage.setItem('Authorization', res.headers["authorization"])
+                sessionStorage.setItem('email', data.username)
                 alert('로그인 성공')
                 window.location.href='/'
 

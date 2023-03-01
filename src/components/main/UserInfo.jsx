@@ -7,7 +7,7 @@ const UserInfoMain = function () {
     const Mainpage = styled.div`
     display: flex;
     flex-direction: column;
-    width: 60vw;
+    /* width: 60vw; */
     justify-content: center;
     margin-top: 0;
 `

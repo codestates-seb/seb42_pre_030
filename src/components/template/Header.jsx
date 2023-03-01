@@ -84,6 +84,9 @@ const Header = () => {
             background-color: rgb(185, 210, 232);
         }
         `
+    const onClick = () => {
+
+    }
 
     const SignUpButton = styled(LoginOutButton)`
         background-color: rgb(10, 149, 255);
@@ -93,7 +96,6 @@ const Header = () => {
             background-color: rgb(49, 114, 198);
         }
         `;
-
 
 
 
@@ -112,13 +114,20 @@ const Header = () => {
                     </TopbarBox2>
                     {isLogin ?
                         <TopbarBox3>
-                            <Link to={"/login"} style={{ textDecoration: 'none' }}>
-                                <TopbarButtonContainer href='/login' ><LoginOutButton>Log out</LoginOutButton></TopbarButtonContainer>
+                            <Link to={"/mypage"} style={{ textDecoration: 'none' }}>
+                                <TopbarButtonContainer href='/mypage' ><LoginOutButton>MyPage</LoginOutButton></TopbarButtonContainer>
                             </Link>
+                            {/* <Link to={"/"} style={{ textDecoration: 'none' }}> */}
+                                <TopbarButtonContainer onClick={()=> {
+                                        sessionStorage.removeItem("Authorization")
+                                        alert("로그아웃 되었습니다.");
+                                        window.location.href="/"
+                                    }} ><SignUpButton>Logout</SignUpButton></TopbarButtonContainer>
+                            {/* </Link> */}
                         </TopbarBox3> :
                         <TopbarBox3>
                             <Link to={"/login"} style={{ textDecoration: 'none' }}>
-                                <TopbarButtonContainer href='/login' ><LoginOutButton>Log in</LoginOutButton></TopbarButtonContainer>
+                                <TopbarButtonContainer href='/login' ><LoginOutButton onClick={onClick}>Log in</LoginOutButton></TopbarButtonContainer>
                             </Link>
                             <Link to={"/signup"} style={{ textDecoration: 'none' }}>
                                 <TopbarButtonContainer href='/signup' ><SignUpButton>Sign up</SignUpButton></TopbarButtonContainer>

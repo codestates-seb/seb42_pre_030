@@ -11,13 +11,13 @@ const UserInfoPage = function () {
     const MainBar = styled.div`
     display: flex;
     flex-direction: row;
-    width: 500px;
-    
+    width: 100%;
+    justify-content: center;
 `
 
     return (
         <>
-            <HeaderWithLogin />
+            <Header />
             <MainBar>
                 <Sidebar />
                 <UserInfoMain />
