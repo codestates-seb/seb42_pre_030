@@ -183,7 +183,7 @@ export const LoginForm = () => {
                 axios.defaults.headers.common["Authorization"]=res.headers["authorization"];
                 sessionStorage.setItem('Authorization', res.headers["authorization"])
                 alert('로그인 성공')
-                // window.location.href='/'
+                window.location.href='/'
 
             })
             .catch((err) => { console.log(err) })

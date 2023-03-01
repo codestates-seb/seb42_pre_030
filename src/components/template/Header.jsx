@@ -3,14 +3,16 @@ import styled from "styled-components";
 import "../../assets/styles/GlobalStyle";
 import homeButton from '../../assets/IMG/--logo--viva--black.png';
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Header = () => {
-useEffect(()=>{
-    // console.log(axios.defaults.headers.common["Authorization"]);
-    console.log(sessionStorage.getItem("Authorization"));
-},[])
+    const [isLogin, setIsLogin] = useState(false)
+    useEffect(() => {
+        // console.log(axios.defaults.headers.common["Authorization"]);
+        console.log(sessionStorage.getItem("Authorization"));
+        setIsLogin(sessionStorage.getItem("Authorization") ? true : false);
+    }, [])
     const Headers = styled.div`
     align-items: center;
     box-sizing: border-box;
@@ -108,15 +110,21 @@ useEffect(()=>{
                     <TopbarBox2>
                         <SearchBox type="text" placeholder='Search' maxLength={'240'}></SearchBox>
                     </TopbarBox2>
-                    <TopbarBox3>
-                        <Link to={"/login"} style={{ textDecoration: 'none' }}>
-                            <TopbarButtonContainer href='/login' ><LoginOutButton>Log in</LoginOutButton></TopbarButtonContainer>
-                        </Link>
-                        <Link to={"/signup"} style={{ textDecoration: 'none' }}>
-                            <TopbarButtonContainer href='/signup' ><SignUpButton>Sign up</SignUpButton></TopbarButtonContainer>
-                        </Link>
-                        {/*<TopbarButtonContainer href='/mypage' ><img className='topbar--item mypage' src='anything.ng'></img></TopbarButtonContainer>*/}
-                    </TopbarBox3>
+                    {isLogin ?
+                        <TopbarBox3>
+                            <Link to={"/login"} style={{ textDecoration: 'none' }}>
+                                <TopbarButtonContainer href='/login' ><LoginOutButton>Log out</LoginOutButton></TopbarButtonContainer>
+                            </Link>
+                        </TopbarBox3> :
+                        <TopbarBox3>
+                            <Link to={"/login"} style={{ textDecoration: 'none' }}>
+                                <TopbarButtonContainer href='/login' ><LoginOutButton>Log in</LoginOutButton></TopbarButtonContainer>
+                            </Link>
+                            <Link to={"/signup"} style={{ textDecoration: 'none' }}>
+                                <TopbarButtonContainer href='/signup' ><SignUpButton>Sign up</SignUpButton></TopbarButtonContainer>
+                            </Link>
+                            {/*<TopbarButtonContainer href='/mypage' ><img className='topbar--item mypage' src='anything.ng'></img></TopbarButtonContainer>*/}
+                        </TopbarBox3>}
                 </TopbarContainer>
             </Headers>
         </>

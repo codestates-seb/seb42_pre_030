@@ -157,7 +157,8 @@ export const SignupForm = () => {
 
             .then((res) => {
                 alert('회원가입 완료')
-                window.location.href='/login'
+                // window.location.href='/login'
+                console.log(res)
             })
             .catch((err) => { console.log(err) })
     };
