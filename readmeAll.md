@@ -46,10 +46,13 @@ BACKEND
 </div>
 
 7. 구현 화면
-
-|랜딩페이지 (질문리스트)|질문 작성|질문상세 + 답변작성|
+|로그인|회원가입|
 |-----|-----|
-|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396083-d032310c-a8dc-4978-b59c-17a68e820459.JPG"/>|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396399-2eab332a-b590-4d57-9abe-0d68e5e75f26.JPG"/>|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396613-34d75aac-3b81-4fad-8fc9-e45675cff71c.JPG"/>|<img  width="300px" src="https://user-images.githubusercontent.com/77859683/222396755-63c28755-dab6-4a16-97e5-22e2d186728e.JPG"/>
+|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396083-d032310c-a8dc-4978-b59c-17a68e820459.JPG"/>|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396399-2eab332a-b590-4d57-9abe-0d68e5e75f26.JPG"/>
+
+|랜딩페이지(질문리스트)|답변작성|
+|-----|-----|
+|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396613-34d75aac-3b81-4fad-8fc9-e45675cff71c.JPG"/>|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396755-63c28755-dab6-4a16-97e5-22e2d186728e.JPG"/>
 |
 
 
