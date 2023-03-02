@@ -8,6 +8,7 @@ import com.vivarepublica.vivastackoverflow.util.UriCreator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,10 +39,14 @@ public class MemberController {
 //        return ResponseEntity.created(location).build();
     }
 
-    @PatchMapping("/{member-id}")
-    public ResponseEntity patchMember(@PathVariable("member-id") @Positive Long memberId,
+    @PatchMapping("/patch")
+    public ResponseEntity patchMember(@AuthenticationPrincipal Member auth,
                                       @Valid @RequestBody MemberDto.Patch requestBody) {
-        requestBody.setMemberId(memberId);
+        if(auth == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        requestBody.setMemberId(auth.getMemberId());
 
         Member member = mapper.memberPatchDtoToMember(requestBody);
 
@@ -52,27 +57,31 @@ public class MemberController {
         return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
-    @GetMapping("/{member-id}")
-    public ResponseEntity getMember(@PathVariable("member-id") @Positive Long memberId) {
-        Member foundMember = memberService.findMember(memberId);
+    @GetMapping("/get")
+    public ResponseEntity getMember(@AuthenticationPrincipal Member auth) {
+        Member foundMember = memberService.findMember(auth.getMemberId());
 
         MemberDto.Response responseBody = mapper.memberToMemberResponseDto(foundMember);
 
         return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
-    @GetMapping("/{member-email}/info")
-    public ResponseEntity getMemberByEmail(@PathVariable("member-email") String email) {
-        Member foundMember = memberService.findMemberByEmail(email);
+//    @GetMapping("/get/email")
+//    public ResponseEntity getMemberByEmail(@PathVariable("member-email") String email) {
+//        Member foundMember = memberService.findMemberByEmail(email);
+//
+//        MemberDto.Response responseBody = mapper.memberToMemberResponseDto(foundMember);
+//
+//        return new ResponseEntity<>(responseBody, HttpStatus.OK);
+//    }
 
-        MemberDto.Response responseBody = mapper.memberToMemberResponseDto(foundMember);
+    @DeleteMapping("/delete")
+    public ResponseEntity deleteMember(@AuthenticationPrincipal Member auth) {
+        if(auth == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
 
-        return new ResponseEntity<>(responseBody, HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{member-id}")
-    public ResponseEntity deleteMember(@PathVariable("member-id") @Positive Long memberId) {
-        memberService.deleteMember(memberId);
+        memberService.deleteMember(auth.getMemberId());
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

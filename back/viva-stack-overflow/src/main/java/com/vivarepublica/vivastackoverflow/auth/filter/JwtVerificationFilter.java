@@ -2,6 +2,7 @@ package com.vivarepublica.vivastackoverflow.auth.filter;
 
 import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import com.vivarepublica.vivastackoverflow.auth.util.CustomAuthorityUtils;
+import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -65,10 +66,16 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
 
     private void setAuthenticationToContext(Map<String, Object> claims) {
         String username = (String) claims.get("username");
+        Integer memberId = (Integer) claims.get("memberId");
+
+        Member member = new Member();
+        member.setMemberId(Long.valueOf(memberId));
+        member.setEmail(username);
+
         List<GrantedAuthority> authorities = authorityUtils.createAuthorities((List) claims.get("roles"));
 
         Authentication authentication =
-                new UsernamePasswordAuthenticationToken(username, null, authorities);
+                new UsernamePasswordAuthenticationToken(member, null, authorities);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
