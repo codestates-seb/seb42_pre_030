@@ -5,9 +5,15 @@
 배포링크 : 
 
 
+
+
+
 ### 2. 디렉토리 구조
 
 <img width="567" alt="스크린샷 2023-03-02 오후 2 12 57" src="https://user-images.githubusercontent.com/115081038/222337101-4803f536-26b2-47c0-bda4-529929ba14e5.png">
+
+
+
 
 
 ### 3. 설치 방법(FE)
@@ -15,7 +21,11 @@
 터미널에 `$npm install` 설치 후
 `$npm run start`로 로컬서버 실행
 
+
+
+
 ### 4. 설치 방법(BE)
+
 
 
 
@@ -26,6 +36,9 @@
 |팀장 은지일|김태은|
 |김례화|조수빈|
 |김대현|-----|
+
+
+
 
 
 ### 6. 기술스택
@@ -49,6 +62,9 @@ BACKEND
 </div>
 
 
+
+
+
 ### 7. 구현 화면
 
 |로그인|회원가입|
@@ -58,6 +74,9 @@ BACKEND
 |랜딩페이지(질문리스트)|답변작성|
 |-----|-----|
 |<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396613-34d75aac-3b81-4fad-8fc9-e45675cff71c.JPG"/>|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396755-63c28755-dab6-4a16-97e5-22e2d186728e.JPG"/>
+
+
+
 
 
 ### 8. 역할
