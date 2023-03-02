@@ -21,6 +21,11 @@ public class AnswerDto {
         @NotBlank(message = "답변은 공백이 아니어야 합니다")
         private String content;
 
+        public void addMemberId(Long memberId) {
+            Assert.notNull(memberId, "member id must not be null."); // NULL 검증, 값이 NULL이면 IllegalArgumentException
+            this.memberId = memberId;
+        }
+
         // TODO: 첨부파일
     }
 
@@ -32,10 +37,14 @@ public class AnswerDto {
         @NotBlank(message = "답변은 공백이 아니어야 합니다")
         private String content;
 
-        public Patch addAnswerId(Long answerId) {
+        public void addAnswerId(Long answerId) {
             Assert.notNull(answerId, "answer id must not be null."); // NULL 검증, 값이 NULL이면 IllegalArgumentException
             this.answerId = answerId;
-            return this;
+        }
+
+        public void addMemberId(Long memberId) {
+            Assert.notNull(memberId, "member id must not be null."); // NULL 검증, 값이 NULL이면 IllegalArgumentException
+            this.memberId = memberId;
         }
     }
 
@@ -57,4 +66,5 @@ public class AnswerDto {
         }
 
     }
+
 }
