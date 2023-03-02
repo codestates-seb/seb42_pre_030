@@ -7,6 +7,7 @@ import com.vivarepublica.vivastackoverflow.domain.answer.dto.AnswerDto;
 import com.vivarepublica.vivastackoverflow.domain.answer.entity.Answer;
 import com.vivarepublica.vivastackoverflow.domain.answer.mapper.AnswerMapper;
 import com.vivarepublica.vivastackoverflow.domain.answer.service.AnswerService;
+import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -73,6 +75,9 @@ public class AnswerControllerTest {
 
         given(answerService.createAnswer(Mockito.any(Answer.class))).willReturn(mockResultAnswer);
 
+        Member member = new Member();
+        member.setMemberId(1L);
+
         // when
         ResultActions postAction =
                 mockMvc.perform(
@@ -80,6 +85,7 @@ public class AnswerControllerTest {
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(content)
+                                .principal(new UsernamePasswordAuthenticationToken(member, null, null))
                 );
 
         // then
@@ -92,7 +98,6 @@ public class AnswerControllerTest {
                 getResponsePreProcessor(),
                 requestFields(
                         fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별 ID"),
-                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별 ID"),
                         fieldWithPath("content").type(JsonFieldType.STRING).description("답변 내용")
                 ),
                 responseHeaders(
@@ -140,7 +145,6 @@ public class AnswerControllerTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("answerId").type(JsonFieldType.NUMBER).description("수정할 답변 식별자 ID").ignored(),
-                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("수정할 답변의 작성자 식별 ID"),
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("수정할 답변 내용")
                                 )
                         ),
@@ -243,7 +247,6 @@ public class AnswerControllerTest {
                 mockMvc.perform(
                         delete("/answers/{answer-id}", 1L)
                                 .accept(MediaType.APPLICATION_JSON)
-                                .param("memberId", "1")
                 );
 
         // then
@@ -254,10 +257,7 @@ public class AnswerControllerTest {
                         getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("answer-id").description("삭제할 답변 식별자 ID")
-                            ),
-                        requestParameters(
-                                parameterWithName("memberId").description("삭제할 답변의 작성자 식별 ID")
-                        )
+                            )
                         )
                 );
     }
