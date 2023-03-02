@@ -23,7 +23,7 @@ width: 840px;
 `
 
 const WriteForm = styled.textarea`
-height: 50vh;
+height: 100px;
 width: 840px;
 `
 

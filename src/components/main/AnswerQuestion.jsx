@@ -37,9 +37,6 @@ const AnswerSubmitMain = () => {
                 <QuestionZone />
                 <Line />
                 <AnswerZone />
-                <AnswerZone />
-                <AnswerZone />
-                <AnswerZone />
                 <AnswerForm />
             </Mainpage>
         </>
