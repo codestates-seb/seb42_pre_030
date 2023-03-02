@@ -78,7 +78,7 @@ export const SocialBtn = ({ name, href, bgcolor, color, hcolor }) => {
     return (
         <SocialLoginBtn bgcolor={bgcolor} color={color} hcolor={hcolor}>
             <img src={href} alt="아이콘 이미지" width="15px"></img>
-            <span>Log in with {name}</span>
+            <span style={{marginLeft:"5px"}}>Log in with {name}</span>
         </SocialLoginBtn>
     )
 }

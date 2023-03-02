@@ -167,9 +167,9 @@ const UserInfo = () => {
                             <InfoM>
                                 <Username>성이름</Username>
                                 <UserDate>
-                                    <ItemIcon href={icon_cake} text="Member for 8 days"></ItemIcon>
+                                    <ItemIcon href={icon_cake} text="Member for N days"></ItemIcon>
                                     <ItemIcon href={icon_clock} text="Last seen this week"></ItemIcon>
-                                    <ItemIcon href={icon_calendar} text="Visited 4 days, 1 consecutive"></ItemIcon>
+                                    <ItemIcon href={icon_calendar} text="Visited N days, N consecutive"></ItemIcon>
                                 </UserDate>
                             </InfoM>
                         </Info>
