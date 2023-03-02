@@ -46,6 +46,7 @@ BACKEND
 </div>
 
 7. 구현 화면
+
 |로그인|회원가입|
 |-----|-----|
 |<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396083-d032310c-a8dc-4978-b59c-17a68e820459.JPG"/>|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396399-2eab332a-b590-4d57-9abe-0d68e5e75f26.JPG"/>
