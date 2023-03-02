@@ -53,7 +53,7 @@ BACKEND
 |랜딩페이지(질문리스트)|답변작성|
 |-----|-----|
 |<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396613-34d75aac-3b81-4fad-8fc9-e45675cff71c.JPG"/>|<img width="300px" src="https://user-images.githubusercontent.com/77859683/222396755-63c28755-dab6-4a16-97e5-22e2d186728e.JPG"/>
-|
+
 
 
 8. 역할
