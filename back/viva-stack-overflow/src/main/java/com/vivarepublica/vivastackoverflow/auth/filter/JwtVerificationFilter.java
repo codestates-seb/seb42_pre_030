@@ -2,6 +2,7 @@ package com.vivarepublica.vivastackoverflow.auth.filter;
 
 import com.vivarepublica.vivastackoverflow.auth.jwt.JwtTokenizer;
 import com.vivarepublica.vivastackoverflow.auth.util.CustomAuthorityUtils;
+import com.vivarepublica.vivastackoverflow.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
