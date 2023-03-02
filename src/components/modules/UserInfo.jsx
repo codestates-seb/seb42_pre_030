@@ -136,6 +136,7 @@ const Flex = styled.div`
 `;
 const UserInfo = () => {
     const URI = "http://ec2-3-35-220-165.ap-northeast-2.compute.amazonaws.com:8080";
+    // const URI = "https://af9b-39-121-143-132.jp.ngrok.io";
     useEffect(() => {
         console.log(sessionStorage.getItem("Authorization"));
         // axios.defaults.headers.common["Authorization"]=sessionStorage.getItem("Authorization")
@@ -143,7 +144,7 @@ const UserInfo = () => {
             await axios({
                 method: 'get',
                 // url: `/members`,
-                url: `${URI}/members/10xc18@gmail.com/info`,
+                url: `${URI}/members/get`,
                 params: {},
                 headers: {
                     Authorization: sessionStorage.getItem("Authorization")

@@ -171,7 +171,7 @@ export const LoginForm = () => {
         console.log(data);
         await axios({
             method: 'post',
-            // url: `/members`,
+            // url: `/auth/login`,
             url: `${URI}/auth/login`,
             params: {},
             data: data,
